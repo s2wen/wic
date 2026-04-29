@@ -1,4 +1,4 @@
-// import { useEffect, useState } from "react";
+import Link from "next/link";
 import styles from "./profile_page.module.css";
 
 export type Course = {
@@ -63,14 +63,20 @@ export default function Profile() {
   return (
     <div>
       <nav className={styles.navbar}>
-        <ul>
-          <li className={styles.element}>
-            <a href="../homepage/page.tsx">Home</a>
-          </li>
-          <li className={styles.element}>
-            <a href="../groups/page.tsx">Find your group</a>
-          </li>
-        </ul>
+        <div className={styles.navContent}>
+          <ul className={styles.navLinks}>
+            <li className={styles.element}>
+              <Link href="/">Home</Link>
+            </li>
+            <li className={styles.element}>
+              <Link href="/leaderboard">LeaderBoard</Link>
+            </li>
+            <li className={styles.element}>
+              <Link href="/profile">Profile</Link>
+            </li>
+          </ul>
+          <button className={styles.authButton}>Sign Out</button>
+        </div>
       </nav>
       <div className={styles.root}>
         <div className={styles.header}>
@@ -161,6 +167,8 @@ export default function Profile() {
             </div>
           </div>
         </div>
+
+        <div></div>
       </div>
     </div>
   );
