@@ -12,8 +12,7 @@ export default async function SignIn() {
     (
     <>
         <h1 className="text-2x1">Welcome {user.name}</h1>
-        return redirect('/secret')
-        {/* <form 
+        <form 
             action={async () => {
                 "use server";
                 await signOut();
@@ -21,7 +20,7 @@ export default async function SignIn() {
         >
             <button className="p-2 border-2 bg-blue-400">
                 Sign Out</button>
-        </form> */}
+        </form>
     </>
     )
     :
