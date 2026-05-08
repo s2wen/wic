@@ -1,0 +1,529 @@
+/* ── Navbar (unchanged) ─────────────────────────────────────── */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 2px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #ffffff;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.06);
+}
+
+.navContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  gap: 16px;
+}
+
+.navLinks {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+}
+
+.element a {
+  text-decoration: none;
+  color: #374151;
+  font-weight: 500;
+  font-size: 15px;
+  transition: color 0.2s;
+}
+
+.element a:hover {
+  color: #1d4ed8;
+}
+
+.authButton {
+  padding: 8px 18px;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  background: transparent;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.authButton:hover {
+  background: #f3f4f6;
+}
+
+/* ── Page ─────────────────────────────────────────────────────── */
+.page {
+  min-height: 100vh;
+  background: #f0f6ff;
+  color: #1e293b;
+  color-scheme: light;
+}
+
+/* ── Step bar ─────────────────────────────────────────────────── */
+.stepBar {
+  border-bottom: 1px solid #dbeafe;
+  background: #fff;
+  padding: 0 48px;
+}
+
+.stepBarInner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+}
+
+.steps {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stepNumDone {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #16a34a;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stepNumActive {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #1e3a8a;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stepNum {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  color: #94a3b8;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stepLabelDone {
+  font-size: 13px;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.stepLabelActive {
+  font-size: 13px;
+  color: #1e3a8a;
+  font-weight: 700;
+}
+
+.stepLabel {
+  font-size: 13px;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.stepLine {
+  width: 40px;
+  height: 1px;
+  background: #cbd5e1;
+}
+
+.stepMeta {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+/* ── Page header ──────────────────────────────────────────────── */
+.formHeader {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 36px 48px 24px;
+}
+
+.pageTitle {
+  font-size: 28px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 6px;
+  letter-spacing: -0.5px;
+}
+
+.pageSubtitle {
+  font-size: 15px;
+  color: #64748b;
+  margin: 0;
+}
+
+/* ── Two-column layout ────────────────────────────────────────── */
+.formContent {
+  display: flex;
+  gap: 24px;
+  padding: 0 48px 56px;
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: flex-start;
+}
+
+/* ── Review card ──────────────────────────────────────────────── */
+.reviewCard {
+  flex: 1;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.reviewMeta {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #94a3b8;
+  margin-bottom: 6px;
+}
+
+.reviewTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 4px;
+}
+
+.reviewDesc {
+  font-size: 13px;
+  color: #f97316;
+  margin: 0 0 24px;
+}
+
+/* ── Detail table ─────────────────────────────────────────────── */
+.detailTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.detailKey {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  color: #94a3b8;
+  padding: 14px 16px 14px 0;
+  width: 130px;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.detailVal {
+  font-size: 14px;
+  color: #0f172a;
+  padding: 14px 0;
+  border-bottom: 1px solid #f1f5f9;
+  line-height: 1.5;
+}
+
+/* ── Host row inside table ────────────────────────────────────── */
+.hostRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #1e3a8a;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.hostName {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.pronouns {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 400;
+}
+
+.hostInfo {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+/* ── Pill & chips ─────────────────────────────────────────────── */
+.pill {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid #bfdbfe;
+}
+
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid #e2e8f0;
+}
+
+/* ── Review footer ────────────────────────────────────────────── */
+.reviewFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.footerNote {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.footerActions {
+  display: flex;
+  gap: 10px;
+}
+
+.backButton {
+  padding: 10px 20px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  background: #fff;
+  color: #475569;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.backButton:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+}
+
+.publishButton {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  background: #1e3a8a;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.publishButton:hover {
+  background: #1e40af;
+}
+
+/* ── Preview panel ────────────────────────────────────────────── */
+.previewPanel {
+  width: 300px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 80px;
+}
+
+.previewHeader {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+  color: #93c5fd;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 16px 20px;
+  border-radius: 12px 12px 0 0;
+}
+
+.previewCard {
+  background: #fff;
+  border: 1px solid #dbeafe;
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  padding: 20px;
+}
+
+.previewTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 6px;
+}
+
+.previewDesc {
+  font-size: 12px;
+  color: #475569;
+  margin: 0 0 12px;
+  line-height: 1.5;
+}
+
+.previewPlaceholder {
+  font-size: 12px;
+  color: #94a3b8;
+  margin: 0 0 12px;
+  line-height: 1.5;
+}
+
+.previewTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.previewTag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid #bfdbfe;
+}
+
+.previewTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+}
+
+.previewKey {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  color: #94a3b8;
+  padding: 6px 8px 6px 0;
+  vertical-align: top;
+  width: 80px;
+}
+
+.previewVal {
+  font-size: 12px;
+  color: #0f172a;
+  padding: 6px 0;
+}
+
+.previewHostRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 14px;
+}
+
+.previewAvatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #1e3a8a;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.previewHostName {
+  font-size: 12px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.previewHostInfo {
+  font-size: 11px;
+  color: #64748b;
+}
+
+/* ── Responsive ───────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .stepBar,
+  .formHeader,
+  .formContent {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .formContent {
+    flex-direction: column;
+  }
+
+  .previewPanel {
+    width: 100%;
+    position: static;
+  }
+
+  .reviewFooter {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .stepMeta {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .reviewCard {
+    padding: 20px 16px;
+  }
+
+  .footerActions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .backButton,
+  .publishButton {
+    width: 100%;
+    text-align: center;
+  }
+}
