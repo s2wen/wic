@@ -1,50 +1,32 @@
-
-import { auth, signIn, signOut } from "@/auth"
+import { auth, signIn } from "@/auth"
 import { redirect } from "next/navigation"
- 
-export default async function SignIn() {
-    const session = await auth();
-    console.log(session)
-    const user = session?.user
 
-    //if signed in, redirect to profile page. else sign in via google
-    return user ?
-    (
-    <>
-        <h1 className="text-2x1">Welcome {user.name}</h1>
-        <form 
-            action={async () => {
-                "use server";
-                await signOut();
-            }}
-        >
-            <button className="p-2 border-2 bg-blue-400">
-                Sign Out</button>
-        </form>
-    </>
-    )
-    :
-    (
-    <>
-        <h1 className="text-x1">Not Authenticated. Please Sign In.</h1>
-        <form
-            action={async () =>{
-                "use server";
-                await signIn("google", {redirectTo: '/secret'});
-            }}
-        >
-            <button className="p-2 border-2 bg-blue-400">Sign In</button>
-        </form>
-    </>
-//     )
-//   return (
-//     <form
-//       action={async () => {
-//         "use server"
-//         await signIn("google")
-//       }}
-//     >
-//       <button type="submit">Signin with Google</button>
-//     </form>
+export default async function SignInPage() {
+  const session = await auth()
+
+  if (session?.user) {
+    // Already logged in, send to home
+    if (session.user.profileComplete) {
+      redirect('/home')
+    } else {
+      redirect('/onboarding')
+    }
+  }
+
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen gap-4">
+      <h1 className="text-2xl font-bold">Welcome</h1>
+      <p className="text-gray-500">Sign in to get started</p>
+      <form
+        action={async () => {
+          "use server"
+          await signIn("google", { redirectTo: '/auth/callback' })
+        }}
+      >
+        <button className="p-2 px-4 border-2 bg-blue-400 rounded hover:bg-blue-500">
+          Sign in with Google
+        </button>
+      </form>
+    </div>
   )
-} 
+}
