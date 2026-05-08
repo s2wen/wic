@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useAuth } from "@/context/AuthContext"; //ShuWen Wen
+import { signIn, signOut } from "next-auth/react"
 
 const MONTHS = [
   "January","February","March","April","May","June",
@@ -89,24 +90,24 @@ export default function HomePage() {
     : [];
 
   // ── Auth helpers ──────────────────────────────────────────────────────────
-  function openAuth(mode: "signin" | "signup", group?: StudyGroup) {
-    setAuthMode(mode);
-    if (group) setPendingGroup(group);
-    setShowAuthModal(true);
-    setFormName(""); setFormEmail(""); setFormPass("");
-  }
+  // function openAuth(mode: "signin" | "signup", group?: StudyGroup) {
+  //   setAuthMode(mode);
+  //   if (group) setPendingGroup(group);
+  //   setShowAuthModal(true);
+  //   setFormName(""); setFormEmail(""); setFormPass("");
+  // }
 
   function handleJoinClick(group: StudyGroup) {
     if (user) {
-      alert(`You've joined "${group.name}"! 🎉`);
+      alert(`You've joined "${group.name}"! 🎉`)
     } else {
-      openAuth("signin", group);
+      signIn("google")  // kicks off your real Google OAuth
     }
   }
 
   function handleSignOut() {
-    setUser(null);
-    setMenuOpen(false);
+    signOut({ callbackUrl: '/' })
+    setMenuOpen(false)
   }
 
   // ── Render ────────────────────────────────────────────────────────────────
@@ -180,24 +181,15 @@ export default function HomePage() {
         {/* Right side */}
         {user ? (
           <p className="text-sm text-gray-500">
-            Welcome back,{" "}
-            <span className="font-medium text-gray-800">{user.name}</span>!
+            Welcome back, <span className="font-medium text-gray-800">{user.name}</span>!
           </p>
         ) : (
-          <div className="flex gap-2">
-            <button
-              onClick={() => openAuth("signin")}
-              className="text-sm border border-gray-200 rounded-lg px-4 py-1.5 text-gray-600 hover:bg-gray-100"
-            >
-              sign in
-            </button>
-            <button
-              onClick={() => openAuth("signup")}
-              className="text-sm bg-teal-600 text-white rounded-lg px-4 py-1.5 hover:bg-teal-700"
-            >
-              sign up
-            </button>
-          </div>
+          <button
+            onClick={() => signIn("google")}
+            className="text-sm bg-teal-600 text-white rounded-lg px-4 py-1.5 hover:bg-teal-700"
+          >
+            Sign in with Google
+          </button>
         )}
       </header>
 
