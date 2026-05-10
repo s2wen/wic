@@ -1,13 +1,12 @@
 import { auth } from "@/auth"
 import { NextResponse } from "next/server"
 
-export default auth((req) => {
+export const proxy = auth((req) => {
   const session = req.auth
   const { pathname } = req.nextUrl
 
-  console.log("middleware hit:", pathname)
+  console.log("proxy hit:", pathname)
   console.log("session:", session)
-  console.log("profileComplete:", session?.user?.profileComplete)
 
   if (!session && pathname !== "/") {
     return NextResponse.redirect(new URL("/", req.url))
