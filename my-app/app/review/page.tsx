@@ -2,6 +2,7 @@
 import styles from "./review.module.css"
 import Link from "next/link"
 import { useSearchParams, useRouter } from "next/navigation"
+import {signOut} from "next-auth/react";
 import { Suspense } from "react"
 
 const locations = [
@@ -62,11 +63,11 @@ function ReviewContent() {
         <nav className={styles.navbar}>
             <div className={styles.navContent}>
                 <ul className={styles.navLinks}>
-                    <li className={styles.element}><Link href="/">Home</Link></li>
+                    <li className={styles.element}><Link href="/homepage">Home</Link></li>
                     <li className={styles.element}><Link href="/leaderboard">LeaderBoard</Link></li>
                     <li className={styles.element}><Link href="/profile">Profile</Link></li>
                 </ul>
-                <button className={styles.authButton}>Sign Out</button>
+                <button className={styles.authButton} onClick={() => signOut({callbackUrl:'/'})}>Sign Out</button>
             </div>
         </nav>
 

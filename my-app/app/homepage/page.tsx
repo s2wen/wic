@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { useAuth } from "@/context/AuthContext"; //ShuWen Wen
 import { signIn, signOut } from "next-auth/react"
+import Link from "next/link";
+import styles from "./homepage.module.css"
 
 const MONTHS = [
   "January","February","March","April","May","June",
@@ -112,89 +114,29 @@ export default function HomePage() {
 
   // ── Render ────────────────────────────────────────────────────────────────
   return (
-    <main className="min-h-screen bg-gray-50 px-4 py-8 max-w-5xl mx-auto">
+    <main >
+      {/* className="min-h-screen bg-gray-50 px-4 py-8 max-w-5xl mx-auto" */}
 
       {/* ── Header ── */}
-      <header className="flex items-center justify-between mb-8">
-
-        {/* Left side */}
-        <div className="flex items-center gap-3">
-
-          {/* Hamburger — only shown when logged in */}
-          {user && (
-            <div className="relative">
-              <button
-                onClick={() => setMenuOpen(o => !o)}
-                className="flex flex-col justify-center gap-1 p-2 rounded-lg hover:bg-gray-100 border border-gray-200"
-                aria-label="Open menu"
-              >
-                <span className="block w-5 h-0.5 bg-gray-600" />
-                <span className="block w-5 h-0.5 bg-gray-600" />
-                <span className="block w-5 h-0.5 bg-gray-600" />
-              </button>
-
-              {/* Dropdown */}
-              {menuOpen && (
-                <>
-                  <div className="fixed inset-0 z-40" onClick={() => setMenuOpen(false)} />
-                  <div className="absolute top-12 left-0 z-50 w-56 bg-white border border-gray-200 rounded-xl shadow-lg py-1">
-                    <div className="px-4 py-2 border-b border-gray-100">
-                      <p className="text-sm font-medium text-gray-900">{user.name}</p>
-                      <p className="text-xs text-gray-400">{user.email}</p>
-                    </div>
-                    {[
-                      { emoji: "👤", label: "Profile" },
-                      { emoji: "⚙️", label: "Preferences" },
-                      { emoji: "📚", label: "My Study Groups" },
-                      { emoji: "🔔", label: "Notifications" },
-                      { emoji: "❓", label: "Help & Support" },
-                    ].map(item => (
-                      <button
-                        key={item.label}
-                        onClick={() => { alert(`${item.label} page coming soon!`); setMenuOpen(false); }}
-                        className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2"
-                      >
-                        <span className="text-base">{item.emoji}</span>
-                        {item.label}
-                      </button>
-                    ))}
-                    <div className="border-t border-gray-100 mt-1 pt-1">
-                      <button
-                        onClick={handleSignOut}
-                        className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-50 flex items-center gap-2"
-                      >
-                        <span className="text-base">🚪</span>
-                        Sign out
-                      </button>
-                    </div>
-                  </div>
-                </>
-              )}
-            </div>
-          )}
-
-          <h1 className="text-xl font-medium text-gray-900">
-            Study Buddy <span className="text-teal-600">Finder</span>
-          </h1>
+      <nav className={styles.navbar}>
+        <div className={styles.navContent}>
+          <ul className={styles.navLinks}>
+            <li className={styles.element}>
+              <Link href="/homepage">Home</Link>
+            </li>
+            <li className={styles.element}>
+              <Link href="/leaderboard">LeaderBoard</Link>
+            </li>
+            <li className={styles.element}>
+              <Link href="/profile">Profile</Link>
+            </li>
+          </ul>
+          <button className={styles.authButton} onClick={() => signOut({callbackUrl:'/'})}>Sign Out</button>
         </div>
-
-        {/* Right side */}
-        {user ? (
-          <p className="text-sm text-gray-500">
-            Welcome back, <span className="font-medium text-gray-800">{user.name}</span>!
-          </p>
-        ) : (
-          <button
-            onClick={() => signIn("google")}
-            className="text-sm bg-teal-600 text-white rounded-lg px-4 py-1.5 hover:bg-teal-700"
-          >
-            Sign in with Google
-          </button>
-        )}
-      </header>
+      </nav>
 
       {/* ── Calendar nav ── */}
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-4 mr-4 ml-4 mt-4">
         <h2 className="text-lg font-medium text-gray-900">
           {MONTHS[month]} {year}
         </h2>
@@ -209,7 +151,7 @@ export default function HomePage() {
       </div>
 
       {/* ── Day labels ── */}
-      <div className="grid grid-cols-7 gap-1 mb-1">
+      <div className="grid grid-cols-7 gap-1 mb-1 mr-4 ml-4">
         {DAY_LABELS.map(d => (
           <div key={d} className="text-center text-xs font-medium text-gray-400 uppercase tracking-wide py-1">
             {d}
@@ -218,7 +160,7 @@ export default function HomePage() {
       </div>
 
       {/* ── Calendar grid ── */}
-      <div className="grid grid-cols-7 gap-1">
+      <div className="grid grid-cols-7 gap-1 mr-4 ml-4">
         {Array.from({ length: firstDay }).map((_, i) => (
           <div key={`empty-${i}`} className="min-h-[80px] rounded-lg bg-gray-100" />
         ))}

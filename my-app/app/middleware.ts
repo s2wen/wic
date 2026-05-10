@@ -5,6 +5,10 @@ export default auth((req) => {
   const session = req.auth
   const { pathname } = req.nextUrl
 
+  console.log("middleware hit:", pathname)
+  console.log("session:", session)
+  console.log("profileComplete:", session?.user?.profileComplete)
+
   if (!session && pathname !== "/") {
     return NextResponse.redirect(new URL("/", req.url))
   }
@@ -14,10 +18,10 @@ export default auth((req) => {
   }
 
   if (session && session.user.profileComplete && pathname === "/onboarding") {
-    return NextResponse.redirect(new URL("/home", req.url))
+    return NextResponse.redirect(new URL("/homepage", req.url))
   }
 })
 
 export const config = {
-  matcher: ["/home/:path*", "/onboarding", "/secret/:path*"]
+  matcher: ["/home/:path*", "/onboarding", "/secret/:path*", "/homepage/:path*", "/confirmation", "/review", "/profile/:path*"]
 }

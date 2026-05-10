@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import {signOut} from "next-auth/react";
 import styles from "./profile_page.module.css";
 
 export type Course = { name: string; section?: string; professor?: string };
@@ -219,7 +220,7 @@ export default function Profile() {
         <div className={styles.navContent}>
           <ul className={styles.navLinks}>
             <li className={styles.element}>
-              <Link href="/">Home</Link>
+              <Link href="/homepage">Home</Link>
             </li>
             <li className={styles.element}>
               <Link href="/leaderboard">LeaderBoard</Link>
@@ -228,7 +229,7 @@ export default function Profile() {
               <Link href="/profile">Profile</Link>
             </li>
           </ul>
-          <button className={styles.authButton}>Sign Out</button>
+          <button className={styles.authButton} onClick={() => signOut({callbackUrl:'/'})}>Sign Out</button>
         </div>
       </nav>
       <div className={styles.shell}>

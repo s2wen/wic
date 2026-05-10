@@ -3,6 +3,7 @@ import styles from "./confirmation.module.css"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 import { Suspense, useMemo } from "react"
+import {signOut} from "next-auth/react";
 
 const locations: Record<string, string> = {
     geisel:      "Geisel Library",
@@ -61,11 +62,11 @@ function ConfirmationContent() {
         <nav className={styles.navbar}>
             <div className={styles.navContent}>
                 <ul className={styles.navLinks}>
-                    <li className={styles.element}><Link href="/">Home</Link></li>
+                    <li className={styles.element}><Link href="/homepage">Home</Link></li>
                     <li className={styles.element}><Link href="/leaderboard">LeaderBoard</Link></li>
                     <li className={styles.element}><Link href="/profile">Profile</Link></li>
                 </ul>
-                <button className={styles.authButton}>Sign Out</button>
+                <button className={styles.authButton} onClick={() => signOut({callbackUrl:'/'})}>Sign Out</button>
             </div>
         </nav>
 
