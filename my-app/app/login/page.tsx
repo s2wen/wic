@@ -7,7 +7,7 @@ export default async function SignInPage() {
   if (session?.user) {
     // Already logged in, send to home
     if (session.user.profileComplete) {
-      redirect('/home')
+      redirect('/homepage')
     } else {
       redirect('/onboarding')
     }

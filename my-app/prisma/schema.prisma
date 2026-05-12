@@ -13,16 +13,32 @@ datasource db {
 }
 
 model User {
-  id              String   @id @default(cuid())
-  email           String   @unique
+  id              String         @id @default(cuid())
+  email           String         @unique
   name            String?
   image           String?
-  googleId        String?  @unique
+  googleId        String?        @unique
   university      String?
   major           String?
   year            String?
   classes         String[]
-  profileComplete Boolean  @default(false)
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  profileComplete Boolean        @default(false)
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  studyGroups     StudyGroup[]   @relation("StudyGroupMembers")
+}
+
+model StudyGroup {
+  id        String     @id @default(cuid())
+  name      String
+  subject   String
+  location  String?
+  time      String?
+  date      DateTime?  // specific meeting date
+  spots     Int        @default(5)
+  color     String     @default("teal")
+  createdAt DateTime   @default(now())
+
+  members   User[]     @relation("StudyGroupMembers")
 }

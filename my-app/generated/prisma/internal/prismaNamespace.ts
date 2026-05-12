@@ -384,7 +384,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
-  User: 'User'
+  User: 'User',
+  StudyGroup: 'StudyGroup'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -400,7 +401,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user"
+    modelProps: "user" | "studyGroup"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -478,6 +479,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    StudyGroup: {
+      payload: Prisma.$StudyGroupPayload<ExtArgs>
+      fields: Prisma.StudyGroupFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.StudyGroupFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StudyGroupPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.StudyGroupFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StudyGroupPayload>
+        }
+        findFirst: {
+          args: Prisma.StudyGroupFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StudyGroupPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.StudyGroupFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StudyGroupPayload>
+        }
+        findMany: {
+          args: Prisma.StudyGroupFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StudyGroupPayload>[]
+        }
+        create: {
+          args: Prisma.StudyGroupCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StudyGroupPayload>
+        }
+        createMany: {
+          args: Prisma.StudyGroupCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.StudyGroupCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StudyGroupPayload>[]
+        }
+        delete: {
+          args: Prisma.StudyGroupDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StudyGroupPayload>
+        }
+        update: {
+          args: Prisma.StudyGroupUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StudyGroupPayload>
+        }
+        deleteMany: {
+          args: Prisma.StudyGroupDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.StudyGroupUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.StudyGroupUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StudyGroupPayload>[]
+        }
+        upsert: {
+          args: Prisma.StudyGroupUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StudyGroupPayload>
+        }
+        aggregate: {
+          args: Prisma.StudyGroupAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateStudyGroup>
+        }
+        groupBy: {
+          args: Prisma.StudyGroupGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.StudyGroupGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.StudyGroupCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.StudyGroupCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -533,6 +608,21 @@ export const UserScalarFieldEnum = {
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const StudyGroupScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  subject: 'subject',
+  location: 'location',
+  time: 'time',
+  date: 'date',
+  spots: 'spots',
+  color: 'color',
+  createdAt: 'createdAt'
+} as const
+
+export type StudyGroupScalarFieldEnum = (typeof StudyGroupScalarFieldEnum)[keyof typeof StudyGroupScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -611,6 +701,20 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 /**
@@ -724,6 +828,7 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
+  studyGroup?: Prisma.StudyGroupOmit
 }
 
 /* Types for Logging */
