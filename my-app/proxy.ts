@@ -1,9 +1,12 @@
 import { auth } from "@/auth"
 import { NextResponse } from "next/server"
 
-export default auth((req) => {
+export const proxy = auth((req) => {
   const session = req.auth
   const { pathname } = req.nextUrl
+
+  console.log("proxy hit:", pathname)
+  console.log("session:", session)
 
   if (!session && pathname !== "/") {
     return NextResponse.redirect(new URL("/", req.url))
@@ -14,10 +17,10 @@ export default auth((req) => {
   }
 
   if (session && session.user.profileComplete && pathname === "/onboarding") {
-    return NextResponse.redirect(new URL("/home", req.url))
+    return NextResponse.redirect(new URL("/homepage", req.url))
   }
 })
 
 export const config = {
-  matcher: ["/home/:path*", "/onboarding", "/secret/:path*"]
+  matcher: ["/home/:path*", "/onboarding", "/secret/:path*", "/homepage/:path*", "/confirmation", "/review", "/profile/:path*"]
 }
