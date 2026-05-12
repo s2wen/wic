@@ -1,9 +1,9 @@
 import { auth } from "@/auth"
 import { prisma } from "@/lib/prisma"
 import { redirect } from "next/navigation"
-import ReviewContent from "./reviewClient"
+import CreateStudyGroup from "./createClient"
 
-export default async function ReviewPage() {
+export default async function CreatePage() {
   const session = await auth()
   if (!session?.user?.email) redirect("/")
 
@@ -15,10 +15,11 @@ export default async function ReviewPage() {
       email: true,
       major: true,
       year: true,
+      classes: true,
     }
   })
 
   if (!dbUser) redirect("/")
 
-  return <ReviewContent user={dbUser} />
+  return <CreateStudyGroup user={dbUser} />
 }

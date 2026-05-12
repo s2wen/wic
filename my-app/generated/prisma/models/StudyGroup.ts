@@ -38,6 +38,7 @@ export type StudyGroupMinAggregateOutputType = {
   id: string | null
   name: string | null
   subject: string | null
+  description: string | null
   location: string | null
   time: string | null
   date: Date | null
@@ -50,6 +51,7 @@ export type StudyGroupMaxAggregateOutputType = {
   id: string | null
   name: string | null
   subject: string | null
+  description: string | null
   location: string | null
   time: string | null
   date: Date | null
@@ -62,6 +64,7 @@ export type StudyGroupCountAggregateOutputType = {
   id: number
   name: number
   subject: number
+  description: number
   location: number
   time: number
   date: number
@@ -84,6 +87,7 @@ export type StudyGroupMinAggregateInputType = {
   id?: true
   name?: true
   subject?: true
+  description?: true
   location?: true
   time?: true
   date?: true
@@ -96,6 +100,7 @@ export type StudyGroupMaxAggregateInputType = {
   id?: true
   name?: true
   subject?: true
+  description?: true
   location?: true
   time?: true
   date?: true
@@ -108,6 +113,7 @@ export type StudyGroupCountAggregateInputType = {
   id?: true
   name?: true
   subject?: true
+  description?: true
   location?: true
   time?: true
   date?: true
@@ -207,6 +213,7 @@ export type StudyGroupGroupByOutputType = {
   id: string
   name: string
   subject: string
+  description: string | null
   location: string | null
   time: string | null
   date: Date | null
@@ -242,6 +249,7 @@ export type StudyGroupWhereInput = {
   id?: Prisma.StringFilter<"StudyGroup"> | string
   name?: Prisma.StringFilter<"StudyGroup"> | string
   subject?: Prisma.StringFilter<"StudyGroup"> | string
+  description?: Prisma.StringNullableFilter<"StudyGroup"> | string | null
   location?: Prisma.StringNullableFilter<"StudyGroup"> | string | null
   time?: Prisma.StringNullableFilter<"StudyGroup"> | string | null
   date?: Prisma.DateTimeNullableFilter<"StudyGroup"> | Date | string | null
@@ -255,6 +263,7 @@ export type StudyGroupOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   subject?: Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
   location?: Prisma.SortOrderInput | Prisma.SortOrder
   time?: Prisma.SortOrderInput | Prisma.SortOrder
   date?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -271,6 +280,7 @@ export type StudyGroupWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.StudyGroupWhereInput | Prisma.StudyGroupWhereInput[]
   name?: Prisma.StringFilter<"StudyGroup"> | string
   subject?: Prisma.StringFilter<"StudyGroup"> | string
+  description?: Prisma.StringNullableFilter<"StudyGroup"> | string | null
   location?: Prisma.StringNullableFilter<"StudyGroup"> | string | null
   time?: Prisma.StringNullableFilter<"StudyGroup"> | string | null
   date?: Prisma.DateTimeNullableFilter<"StudyGroup"> | Date | string | null
@@ -284,6 +294,7 @@ export type StudyGroupOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   subject?: Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
   location?: Prisma.SortOrderInput | Prisma.SortOrder
   time?: Prisma.SortOrderInput | Prisma.SortOrder
   date?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -304,6 +315,7 @@ export type StudyGroupScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"StudyGroup"> | string
   name?: Prisma.StringWithAggregatesFilter<"StudyGroup"> | string
   subject?: Prisma.StringWithAggregatesFilter<"StudyGroup"> | string
+  description?: Prisma.StringNullableWithAggregatesFilter<"StudyGroup"> | string | null
   location?: Prisma.StringNullableWithAggregatesFilter<"StudyGroup"> | string | null
   time?: Prisma.StringNullableWithAggregatesFilter<"StudyGroup"> | string | null
   date?: Prisma.DateTimeNullableWithAggregatesFilter<"StudyGroup"> | Date | string | null
@@ -316,6 +328,7 @@ export type StudyGroupCreateInput = {
   id?: string
   name: string
   subject: string
+  description?: string | null
   location?: string | null
   time?: string | null
   date?: Date | string | null
@@ -329,6 +342,7 @@ export type StudyGroupUncheckedCreateInput = {
   id?: string
   name: string
   subject: string
+  description?: string | null
   location?: string | null
   time?: string | null
   date?: Date | string | null
@@ -342,6 +356,7 @@ export type StudyGroupUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   subject?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -355,6 +370,7 @@ export type StudyGroupUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   subject?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -368,6 +384,7 @@ export type StudyGroupCreateManyInput = {
   id?: string
   name: string
   subject: string
+  description?: string | null
   location?: string | null
   time?: string | null
   date?: Date | string | null
@@ -380,6 +397,7 @@ export type StudyGroupUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   subject?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -392,6 +410,7 @@ export type StudyGroupUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   subject?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -414,6 +433,7 @@ export type StudyGroupCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   subject?: Prisma.SortOrder
+  description?: Prisma.SortOrder
   location?: Prisma.SortOrder
   time?: Prisma.SortOrder
   date?: Prisma.SortOrder
@@ -430,6 +450,7 @@ export type StudyGroupMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   subject?: Prisma.SortOrder
+  description?: Prisma.SortOrder
   location?: Prisma.SortOrder
   time?: Prisma.SortOrder
   date?: Prisma.SortOrder
@@ -442,6 +463,7 @@ export type StudyGroupMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   subject?: Prisma.SortOrder
+  description?: Prisma.SortOrder
   location?: Prisma.SortOrder
   time?: Prisma.SortOrder
   date?: Prisma.SortOrder
@@ -508,6 +530,7 @@ export type StudyGroupCreateWithoutMembersInput = {
   id?: string
   name: string
   subject: string
+  description?: string | null
   location?: string | null
   time?: string | null
   date?: Date | string | null
@@ -520,6 +543,7 @@ export type StudyGroupUncheckedCreateWithoutMembersInput = {
   id?: string
   name: string
   subject: string
+  description?: string | null
   location?: string | null
   time?: string | null
   date?: Date | string | null
@@ -556,6 +580,7 @@ export type StudyGroupScalarWhereInput = {
   id?: Prisma.StringFilter<"StudyGroup"> | string
   name?: Prisma.StringFilter<"StudyGroup"> | string
   subject?: Prisma.StringFilter<"StudyGroup"> | string
+  description?: Prisma.StringNullableFilter<"StudyGroup"> | string | null
   location?: Prisma.StringNullableFilter<"StudyGroup"> | string | null
   time?: Prisma.StringNullableFilter<"StudyGroup"> | string | null
   date?: Prisma.DateTimeNullableFilter<"StudyGroup"> | Date | string | null
@@ -568,6 +593,7 @@ export type StudyGroupUpdateWithoutMembersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   subject?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -580,6 +606,7 @@ export type StudyGroupUncheckedUpdateWithoutMembersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   subject?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -592,6 +619,7 @@ export type StudyGroupUncheckedUpdateManyWithoutMembersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   subject?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -635,6 +663,7 @@ export type StudyGroupSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   id?: boolean
   name?: boolean
   subject?: boolean
+  description?: boolean
   location?: boolean
   time?: boolean
   date?: boolean
@@ -649,6 +678,7 @@ export type StudyGroupSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   id?: boolean
   name?: boolean
   subject?: boolean
+  description?: boolean
   location?: boolean
   time?: boolean
   date?: boolean
@@ -661,6 +691,7 @@ export type StudyGroupSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   id?: boolean
   name?: boolean
   subject?: boolean
+  description?: boolean
   location?: boolean
   time?: boolean
   date?: boolean
@@ -673,6 +704,7 @@ export type StudyGroupSelectScalar = {
   id?: boolean
   name?: boolean
   subject?: boolean
+  description?: boolean
   location?: boolean
   time?: boolean
   date?: boolean
@@ -681,7 +713,7 @@ export type StudyGroupSelectScalar = {
   createdAt?: boolean
 }
 
-export type StudyGroupOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "subject" | "location" | "time" | "date" | "spots" | "color" | "createdAt", ExtArgs["result"]["studyGroup"]>
+export type StudyGroupOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "subject" | "description" | "location" | "time" | "date" | "spots" | "color" | "createdAt", ExtArgs["result"]["studyGroup"]>
 export type StudyGroupInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   members?: boolean | Prisma.StudyGroup$membersArgs<ExtArgs>
   _count?: boolean | Prisma.StudyGroupCountOutputTypeDefaultArgs<ExtArgs>
@@ -698,6 +730,7 @@ export type $StudyGroupPayload<ExtArgs extends runtime.Types.Extensions.Internal
     id: string
     name: string
     subject: string
+    description: string | null
     location: string | null
     time: string | null
     date: Date | null
@@ -1131,6 +1164,7 @@ export interface StudyGroupFieldRefs {
   readonly id: Prisma.FieldRef<"StudyGroup", 'String'>
   readonly name: Prisma.FieldRef<"StudyGroup", 'String'>
   readonly subject: Prisma.FieldRef<"StudyGroup", 'String'>
+  readonly description: Prisma.FieldRef<"StudyGroup", 'String'>
   readonly location: Prisma.FieldRef<"StudyGroup", 'String'>
   readonly time: Prisma.FieldRef<"StudyGroup", 'String'>
   readonly date: Prisma.FieldRef<"StudyGroup", 'DateTime'>

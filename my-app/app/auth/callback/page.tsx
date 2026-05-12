@@ -7,7 +7,7 @@ export default async function AuthCallback() {
   if (!session?.user) redirect('/')
 
   if (session.user.profileComplete) {
-    redirect('/home')
+    redirect('/homepage')
   } else {
     redirect('/onboarding')
   }

@@ -6,7 +6,7 @@ export default async function LandingPage() {
   const session = await auth()
 
   if (session?.user) {
-    if (session.user.profileComplete) redirect('/home')
+    if (session.user.profileComplete) redirect('/homepage')
     else redirect('/onboarding')
   }
 

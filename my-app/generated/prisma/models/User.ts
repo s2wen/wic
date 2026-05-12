@@ -28,6 +28,7 @@ export type UserMinAggregateOutputType = {
   id: string | null
   email: string | null
   name: string | null
+  pronouns: string | null
   image: string | null
   googleId: string | null
   university: string | null
@@ -42,6 +43,7 @@ export type UserMaxAggregateOutputType = {
   id: string | null
   email: string | null
   name: string | null
+  pronouns: string | null
   image: string | null
   googleId: string | null
   university: string | null
@@ -56,6 +58,7 @@ export type UserCountAggregateOutputType = {
   id: number
   email: number
   name: number
+  pronouns: number
   image: number
   googleId: number
   university: number
@@ -73,6 +76,7 @@ export type UserMinAggregateInputType = {
   id?: true
   email?: true
   name?: true
+  pronouns?: true
   image?: true
   googleId?: true
   university?: true
@@ -87,6 +91,7 @@ export type UserMaxAggregateInputType = {
   id?: true
   email?: true
   name?: true
+  pronouns?: true
   image?: true
   googleId?: true
   university?: true
@@ -101,6 +106,7 @@ export type UserCountAggregateInputType = {
   id?: true
   email?: true
   name?: true
+  pronouns?: true
   image?: true
   googleId?: true
   university?: true
@@ -189,6 +195,7 @@ export type UserGroupByOutputType = {
   id: string
   email: string
   name: string | null
+  pronouns: string | null
   image: string | null
   googleId: string | null
   university: string | null
@@ -225,6 +232,7 @@ export type UserWhereInput = {
   id?: Prisma.StringFilter<"User"> | string
   email?: Prisma.StringFilter<"User"> | string
   name?: Prisma.StringNullableFilter<"User"> | string | null
+  pronouns?: Prisma.StringNullableFilter<"User"> | string | null
   image?: Prisma.StringNullableFilter<"User"> | string | null
   googleId?: Prisma.StringNullableFilter<"User"> | string | null
   university?: Prisma.StringNullableFilter<"User"> | string | null
@@ -241,6 +249,7 @@ export type UserOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
   name?: Prisma.SortOrderInput | Prisma.SortOrder
+  pronouns?: Prisma.SortOrderInput | Prisma.SortOrder
   image?: Prisma.SortOrderInput | Prisma.SortOrder
   googleId?: Prisma.SortOrderInput | Prisma.SortOrder
   university?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -261,6 +270,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   name?: Prisma.StringNullableFilter<"User"> | string | null
+  pronouns?: Prisma.StringNullableFilter<"User"> | string | null
   image?: Prisma.StringNullableFilter<"User"> | string | null
   university?: Prisma.StringNullableFilter<"User"> | string | null
   major?: Prisma.StringNullableFilter<"User"> | string | null
@@ -276,6 +286,7 @@ export type UserOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
   name?: Prisma.SortOrderInput | Prisma.SortOrder
+  pronouns?: Prisma.SortOrderInput | Prisma.SortOrder
   image?: Prisma.SortOrderInput | Prisma.SortOrder
   googleId?: Prisma.SortOrderInput | Prisma.SortOrder
   university?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -297,6 +308,7 @@ export type UserScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"User"> | string
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
   name?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  pronouns?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   image?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   googleId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   university?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
@@ -312,6 +324,7 @@ export type UserCreateInput = {
   id?: string
   email: string
   name?: string | null
+  pronouns?: string | null
   image?: string | null
   googleId?: string | null
   university?: string | null
@@ -328,6 +341,7 @@ export type UserUncheckedCreateInput = {
   id?: string
   email: string
   name?: string | null
+  pronouns?: string | null
   image?: string | null
   googleId?: string | null
   university?: string | null
@@ -344,6 +358,7 @@ export type UserUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pronouns?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -360,6 +375,7 @@ export type UserUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pronouns?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -376,6 +392,7 @@ export type UserCreateManyInput = {
   id?: string
   email: string
   name?: string | null
+  pronouns?: string | null
   image?: string | null
   googleId?: string | null
   university?: string | null
@@ -391,6 +408,7 @@ export type UserUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pronouns?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -406,6 +424,7 @@ export type UserUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pronouns?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -429,6 +448,7 @@ export type UserCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  pronouns?: Prisma.SortOrder
   image?: Prisma.SortOrder
   googleId?: Prisma.SortOrder
   university?: Prisma.SortOrder
@@ -444,6 +464,7 @@ export type UserMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  pronouns?: Prisma.SortOrder
   image?: Prisma.SortOrder
   googleId?: Prisma.SortOrder
   university?: Prisma.SortOrder
@@ -458,6 +479,7 @@ export type UserMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  pronouns?: Prisma.SortOrder
   image?: Prisma.SortOrder
   googleId?: Prisma.SortOrder
   university?: Prisma.SortOrder
@@ -545,6 +567,7 @@ export type UserCreateWithoutStudyGroupsInput = {
   id?: string
   email: string
   name?: string | null
+  pronouns?: string | null
   image?: string | null
   googleId?: string | null
   university?: string | null
@@ -560,6 +583,7 @@ export type UserUncheckedCreateWithoutStudyGroupsInput = {
   id?: string
   email: string
   name?: string | null
+  pronouns?: string | null
   image?: string | null
   googleId?: string | null
   university?: string | null
@@ -599,6 +623,7 @@ export type UserScalarWhereInput = {
   id?: Prisma.StringFilter<"User"> | string
   email?: Prisma.StringFilter<"User"> | string
   name?: Prisma.StringNullableFilter<"User"> | string | null
+  pronouns?: Prisma.StringNullableFilter<"User"> | string | null
   image?: Prisma.StringNullableFilter<"User"> | string | null
   googleId?: Prisma.StringNullableFilter<"User"> | string | null
   university?: Prisma.StringNullableFilter<"User"> | string | null
@@ -614,6 +639,7 @@ export type UserUpdateWithoutStudyGroupsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pronouns?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -629,6 +655,7 @@ export type UserUncheckedUpdateWithoutStudyGroupsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pronouns?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -644,6 +671,7 @@ export type UserUncheckedUpdateManyWithoutStudyGroupsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pronouns?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -690,6 +718,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   id?: boolean
   email?: boolean
   name?: boolean
+  pronouns?: boolean
   image?: boolean
   googleId?: boolean
   university?: boolean
@@ -707,6 +736,7 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   id?: boolean
   email?: boolean
   name?: boolean
+  pronouns?: boolean
   image?: boolean
   googleId?: boolean
   university?: boolean
@@ -722,6 +752,7 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   id?: boolean
   email?: boolean
   name?: boolean
+  pronouns?: boolean
   image?: boolean
   googleId?: boolean
   university?: boolean
@@ -737,6 +768,7 @@ export type UserSelectScalar = {
   id?: boolean
   email?: boolean
   name?: boolean
+  pronouns?: boolean
   image?: boolean
   googleId?: boolean
   university?: boolean
@@ -748,7 +780,7 @@ export type UserSelectScalar = {
   updatedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "name" | "image" | "googleId" | "university" | "major" | "year" | "classes" | "profileComplete" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "name" | "pronouns" | "image" | "googleId" | "university" | "major" | "year" | "classes" | "profileComplete" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   studyGroups?: boolean | Prisma.User$studyGroupsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -765,6 +797,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     id: string
     email: string
     name: string | null
+    pronouns: string | null
     image: string | null
     googleId: string | null
     university: string | null
@@ -1201,6 +1234,7 @@ export interface UserFieldRefs {
   readonly id: Prisma.FieldRef<"User", 'String'>
   readonly email: Prisma.FieldRef<"User", 'String'>
   readonly name: Prisma.FieldRef<"User", 'String'>
+  readonly pronouns: Prisma.FieldRef<"User", 'String'>
   readonly image: Prisma.FieldRef<"User", 'String'>
   readonly googleId: Prisma.FieldRef<"User", 'String'>
   readonly university: Prisma.FieldRef<"User", 'String'>

@@ -16,6 +16,7 @@ model User {
   id              String         @id @default(cuid())
   email           String         @unique
   name            String?
+  pronouns        String?
   image           String?
   googleId        String?        @unique
   university      String?
@@ -33,6 +34,7 @@ model StudyGroup {
   id        String     @id @default(cuid())
   name      String
   subject   String
+  description String?
   location  String?
   time      String?
   date      DateTime?  // specific meeting date
