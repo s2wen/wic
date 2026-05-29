@@ -51,8 +51,8 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  User: 'User',
-  StudyGroup: 'StudyGroup'
+  StudyGroup: 'StudyGroup',
+  User: 'User'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -69,6 +69,22 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 } as const)
 
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+
+
+export const StudyGroupScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  subject: 'subject',
+  description: 'description',
+  location: 'location',
+  time: 'time',
+  date: 'date',
+  spots: 'spots',
+  color: 'color',
+  createdAt: 'createdAt'
+} as const
+
+export type StudyGroupScalarFieldEnum = (typeof StudyGroupScalarFieldEnum)[keyof typeof StudyGroupScalarFieldEnum]
 
 
 export const UserScalarFieldEnum = {
@@ -88,22 +104,6 @@ export const UserScalarFieldEnum = {
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
-
-
-export const StudyGroupScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  subject: 'subject',
-  description: 'description',
-  location: 'location',
-  time: 'time',
-  date: 'date',
-  spots: 'spots',
-  color: 'color',
-  createdAt: 'createdAt'
-} as const
-
-export type StudyGroupScalarFieldEnum = (typeof StudyGroupScalarFieldEnum)[keyof typeof StudyGroupScalarFieldEnum]
 
 
 export const SortOrder = {

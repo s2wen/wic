@@ -242,7 +242,7 @@ export type UserWhereInput = {
   profileComplete?: Prisma.BoolFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  studyGroups?: Prisma.StudyGroupListRelationFilter
+  StudyGroup?: Prisma.StudyGroupListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -259,7 +259,7 @@ export type UserOrderByWithRelationInput = {
   profileComplete?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  studyGroups?: Prisma.StudyGroupOrderByRelationAggregateInput
+  StudyGroup?: Prisma.StudyGroupOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -279,7 +279,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   profileComplete?: Prisma.BoolFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  studyGroups?: Prisma.StudyGroupListRelationFilter
+  StudyGroup?: Prisma.StudyGroupListRelationFilter
 }, "id" | "email" | "googleId">
 
 export type UserOrderByWithAggregationInput = {
@@ -333,8 +333,8 @@ export type UserCreateInput = {
   classes?: Prisma.UserCreateclassesInput | string[]
   profileComplete?: boolean
   createdAt?: Date | string
-  updatedAt?: Date | string
-  studyGroups?: Prisma.StudyGroupCreateNestedManyWithoutMembersInput
+  updatedAt: Date | string
+  StudyGroup?: Prisma.StudyGroupCreateNestedManyWithoutMembersInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -350,8 +350,8 @@ export type UserUncheckedCreateInput = {
   classes?: Prisma.UserCreateclassesInput | string[]
   profileComplete?: boolean
   createdAt?: Date | string
-  updatedAt?: Date | string
-  studyGroups?: Prisma.StudyGroupUncheckedCreateNestedManyWithoutMembersInput
+  updatedAt: Date | string
+  StudyGroup?: Prisma.StudyGroupUncheckedCreateNestedManyWithoutMembersInput
 }
 
 export type UserUpdateInput = {
@@ -368,7 +368,7 @@ export type UserUpdateInput = {
   profileComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  studyGroups?: Prisma.StudyGroupUpdateManyWithoutMembersNestedInput
+  StudyGroup?: Prisma.StudyGroupUpdateManyWithoutMembersNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -385,7 +385,7 @@ export type UserUncheckedUpdateInput = {
   profileComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  studyGroups?: Prisma.StudyGroupUncheckedUpdateManyWithoutMembersNestedInput
+  StudyGroup?: Prisma.StudyGroupUncheckedUpdateManyWithoutMembersNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -401,7 +401,7 @@ export type UserCreateManyInput = {
   classes?: Prisma.UserCreateclassesInput | string[]
   profileComplete?: boolean
   createdAt?: Date | string
-  updatedAt?: Date | string
+  updatedAt: Date | string
 }
 
 export type UserUpdateManyMutationInput = {
@@ -434,6 +434,16 @@ export type UserUncheckedUpdateManyInput = {
   profileComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type UserListRelationFilter = {
+  every?: Prisma.UserWhereInput
+  some?: Prisma.UserWhereInput
+  none?: Prisma.UserWhereInput
+}
+
+export type UserOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type StringNullableListFilter<$PrismaModel = never> = {
@@ -490,26 +500,46 @@ export type UserMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
 }
 
-export type UserListRelationFilter = {
-  every?: Prisma.UserWhereInput
-  some?: Prisma.UserWhereInput
-  none?: Prisma.UserWhereInput
+export type UserCreateNestedManyWithoutStudyGroupInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutStudyGroupInput, Prisma.UserUncheckedCreateWithoutStudyGroupInput> | Prisma.UserCreateWithoutStudyGroupInput[] | Prisma.UserUncheckedCreateWithoutStudyGroupInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutStudyGroupInput | Prisma.UserCreateOrConnectWithoutStudyGroupInput[]
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
 }
 
-export type UserOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
+export type UserUncheckedCreateNestedManyWithoutStudyGroupInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutStudyGroupInput, Prisma.UserUncheckedCreateWithoutStudyGroupInput> | Prisma.UserCreateWithoutStudyGroupInput[] | Prisma.UserUncheckedCreateWithoutStudyGroupInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutStudyGroupInput | Prisma.UserCreateOrConnectWithoutStudyGroupInput[]
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+}
+
+export type UserUpdateManyWithoutStudyGroupNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutStudyGroupInput, Prisma.UserUncheckedCreateWithoutStudyGroupInput> | Prisma.UserCreateWithoutStudyGroupInput[] | Prisma.UserUncheckedCreateWithoutStudyGroupInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutStudyGroupInput | Prisma.UserCreateOrConnectWithoutStudyGroupInput[]
+  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutStudyGroupInput | Prisma.UserUpsertWithWhereUniqueWithoutStudyGroupInput[]
+  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  update?: Prisma.UserUpdateWithWhereUniqueWithoutStudyGroupInput | Prisma.UserUpdateWithWhereUniqueWithoutStudyGroupInput[]
+  updateMany?: Prisma.UserUpdateManyWithWhereWithoutStudyGroupInput | Prisma.UserUpdateManyWithWhereWithoutStudyGroupInput[]
+  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+}
+
+export type UserUncheckedUpdateManyWithoutStudyGroupNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutStudyGroupInput, Prisma.UserUncheckedCreateWithoutStudyGroupInput> | Prisma.UserCreateWithoutStudyGroupInput[] | Prisma.UserUncheckedCreateWithoutStudyGroupInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutStudyGroupInput | Prisma.UserCreateOrConnectWithoutStudyGroupInput[]
+  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutStudyGroupInput | Prisma.UserUpsertWithWhereUniqueWithoutStudyGroupInput[]
+  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  update?: Prisma.UserUpdateWithWhereUniqueWithoutStudyGroupInput | Prisma.UserUpdateWithWhereUniqueWithoutStudyGroupInput[]
+  updateMany?: Prisma.UserUpdateManyWithWhereWithoutStudyGroupInput | Prisma.UserUpdateManyWithWhereWithoutStudyGroupInput[]
+  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
 }
 
 export type UserCreateclassesInput = {
   set: string[]
-}
-
-export type StringFieldUpdateOperationsInput = {
-  set?: string
-}
-
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
 }
 
 export type UserUpdateclassesInput = {
@@ -521,49 +551,7 @@ export type BoolFieldUpdateOperationsInput = {
   set?: boolean
 }
 
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
-}
-
-export type UserCreateNestedManyWithoutStudyGroupsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutStudyGroupsInput, Prisma.UserUncheckedCreateWithoutStudyGroupsInput> | Prisma.UserCreateWithoutStudyGroupsInput[] | Prisma.UserUncheckedCreateWithoutStudyGroupsInput[]
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutStudyGroupsInput | Prisma.UserCreateOrConnectWithoutStudyGroupsInput[]
-  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-}
-
-export type UserUncheckedCreateNestedManyWithoutStudyGroupsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutStudyGroupsInput, Prisma.UserUncheckedCreateWithoutStudyGroupsInput> | Prisma.UserCreateWithoutStudyGroupsInput[] | Prisma.UserUncheckedCreateWithoutStudyGroupsInput[]
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutStudyGroupsInput | Prisma.UserCreateOrConnectWithoutStudyGroupsInput[]
-  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-}
-
-export type UserUpdateManyWithoutStudyGroupsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutStudyGroupsInput, Prisma.UserUncheckedCreateWithoutStudyGroupsInput> | Prisma.UserCreateWithoutStudyGroupsInput[] | Prisma.UserUncheckedCreateWithoutStudyGroupsInput[]
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutStudyGroupsInput | Prisma.UserCreateOrConnectWithoutStudyGroupsInput[]
-  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutStudyGroupsInput | Prisma.UserUpsertWithWhereUniqueWithoutStudyGroupsInput[]
-  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  update?: Prisma.UserUpdateWithWhereUniqueWithoutStudyGroupsInput | Prisma.UserUpdateWithWhereUniqueWithoutStudyGroupsInput[]
-  updateMany?: Prisma.UserUpdateManyWithWhereWithoutStudyGroupsInput | Prisma.UserUpdateManyWithWhereWithoutStudyGroupsInput[]
-  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
-}
-
-export type UserUncheckedUpdateManyWithoutStudyGroupsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutStudyGroupsInput, Prisma.UserUncheckedCreateWithoutStudyGroupsInput> | Prisma.UserCreateWithoutStudyGroupsInput[] | Prisma.UserUncheckedCreateWithoutStudyGroupsInput[]
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutStudyGroupsInput | Prisma.UserCreateOrConnectWithoutStudyGroupsInput[]
-  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutStudyGroupsInput | Prisma.UserUpsertWithWhereUniqueWithoutStudyGroupsInput[]
-  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  update?: Prisma.UserUpdateWithWhereUniqueWithoutStudyGroupsInput | Prisma.UserUpdateWithWhereUniqueWithoutStudyGroupsInput[]
-  updateMany?: Prisma.UserUpdateManyWithWhereWithoutStudyGroupsInput | Prisma.UserUpdateManyWithWhereWithoutStudyGroupsInput[]
-  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
-}
-
-export type UserCreateWithoutStudyGroupsInput = {
+export type UserCreateWithoutStudyGroupInput = {
   id?: string
   email: string
   name?: string | null
@@ -576,10 +564,10 @@ export type UserCreateWithoutStudyGroupsInput = {
   classes?: Prisma.UserCreateclassesInput | string[]
   profileComplete?: boolean
   createdAt?: Date | string
-  updatedAt?: Date | string
+  updatedAt: Date | string
 }
 
-export type UserUncheckedCreateWithoutStudyGroupsInput = {
+export type UserUncheckedCreateWithoutStudyGroupInput = {
   id?: string
   email: string
   name?: string | null
@@ -592,28 +580,28 @@ export type UserUncheckedCreateWithoutStudyGroupsInput = {
   classes?: Prisma.UserCreateclassesInput | string[]
   profileComplete?: boolean
   createdAt?: Date | string
-  updatedAt?: Date | string
+  updatedAt: Date | string
 }
 
-export type UserCreateOrConnectWithoutStudyGroupsInput = {
+export type UserCreateOrConnectWithoutStudyGroupInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutStudyGroupsInput, Prisma.UserUncheckedCreateWithoutStudyGroupsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutStudyGroupInput, Prisma.UserUncheckedCreateWithoutStudyGroupInput>
 }
 
-export type UserUpsertWithWhereUniqueWithoutStudyGroupsInput = {
+export type UserUpsertWithWhereUniqueWithoutStudyGroupInput = {
   where: Prisma.UserWhereUniqueInput
-  update: Prisma.XOR<Prisma.UserUpdateWithoutStudyGroupsInput, Prisma.UserUncheckedUpdateWithoutStudyGroupsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutStudyGroupsInput, Prisma.UserUncheckedCreateWithoutStudyGroupsInput>
+  update: Prisma.XOR<Prisma.UserUpdateWithoutStudyGroupInput, Prisma.UserUncheckedUpdateWithoutStudyGroupInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutStudyGroupInput, Prisma.UserUncheckedCreateWithoutStudyGroupInput>
 }
 
-export type UserUpdateWithWhereUniqueWithoutStudyGroupsInput = {
+export type UserUpdateWithWhereUniqueWithoutStudyGroupInput = {
   where: Prisma.UserWhereUniqueInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutStudyGroupsInput, Prisma.UserUncheckedUpdateWithoutStudyGroupsInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutStudyGroupInput, Prisma.UserUncheckedUpdateWithoutStudyGroupInput>
 }
 
-export type UserUpdateManyWithWhereWithoutStudyGroupsInput = {
+export type UserUpdateManyWithWhereWithoutStudyGroupInput = {
   where: Prisma.UserScalarWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateManyMutationInput, Prisma.UserUncheckedUpdateManyWithoutStudyGroupsInput>
+  data: Prisma.XOR<Prisma.UserUpdateManyMutationInput, Prisma.UserUncheckedUpdateManyWithoutStudyGroupInput>
 }
 
 export type UserScalarWhereInput = {
@@ -635,7 +623,7 @@ export type UserScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
 }
 
-export type UserUpdateWithoutStudyGroupsInput = {
+export type UserUpdateWithoutStudyGroupInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -651,7 +639,7 @@ export type UserUpdateWithoutStudyGroupsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type UserUncheckedUpdateWithoutStudyGroupsInput = {
+export type UserUncheckedUpdateWithoutStudyGroupInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -667,7 +655,7 @@ export type UserUncheckedUpdateWithoutStudyGroupsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type UserUncheckedUpdateManyWithoutStudyGroupsInput = {
+export type UserUncheckedUpdateManyWithoutStudyGroupInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -689,11 +677,11 @@ export type UserUncheckedUpdateManyWithoutStudyGroupsInput = {
  */
 
 export type UserCountOutputType = {
-  studyGroups: number
+  StudyGroup: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  studyGroups?: boolean | UserCountOutputTypeCountStudyGroupsArgs
+  StudyGroup?: boolean | UserCountOutputTypeCountStudyGroupArgs
 }
 
 /**
@@ -709,7 +697,7 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountStudyGroupsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserCountOutputTypeCountStudyGroupArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.StudyGroupWhereInput
 }
 
@@ -728,7 +716,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   profileComplete?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  studyGroups?: boolean | Prisma.User$studyGroupsArgs<ExtArgs>
+  StudyGroup?: boolean | Prisma.User$StudyGroupArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -782,7 +770,7 @@ export type UserSelectScalar = {
 
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "name" | "pronouns" | "image" | "googleId" | "university" | "major" | "year" | "classes" | "profileComplete" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  studyGroups?: boolean | Prisma.User$studyGroupsArgs<ExtArgs>
+  StudyGroup?: boolean | Prisma.User$StudyGroupArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -791,7 +779,7 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
-    studyGroups: Prisma.$StudyGroupPayload<ExtArgs>[]
+    StudyGroup: Prisma.$StudyGroupPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1201,7 +1189,7 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  studyGroups<T extends Prisma.User$studyGroupsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$studyGroupsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StudyGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  StudyGroup<T extends Prisma.User$StudyGroupArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$StudyGroupArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StudyGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1637,9 +1625,9 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * User.studyGroups
+ * User.StudyGroup
  */
-export type User$studyGroupsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$StudyGroupArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the StudyGroup
    */

@@ -335,7 +335,7 @@ export type StudyGroupCreateInput = {
   spots?: number
   color?: string
   createdAt?: Date | string
-  members?: Prisma.UserCreateNestedManyWithoutStudyGroupsInput
+  members?: Prisma.UserCreateNestedManyWithoutStudyGroupInput
 }
 
 export type StudyGroupUncheckedCreateInput = {
@@ -349,7 +349,7 @@ export type StudyGroupUncheckedCreateInput = {
   spots?: number
   color?: string
   createdAt?: Date | string
-  members?: Prisma.UserUncheckedCreateNestedManyWithoutStudyGroupsInput
+  members?: Prisma.UserUncheckedCreateNestedManyWithoutStudyGroupInput
 }
 
 export type StudyGroupUpdateInput = {
@@ -363,7 +363,7 @@ export type StudyGroupUpdateInput = {
   spots?: Prisma.IntFieldUpdateOperationsInput | number
   color?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  members?: Prisma.UserUpdateManyWithoutStudyGroupsNestedInput
+  members?: Prisma.UserUpdateManyWithoutStudyGroupNestedInput
 }
 
 export type StudyGroupUncheckedUpdateInput = {
@@ -377,7 +377,7 @@ export type StudyGroupUncheckedUpdateInput = {
   spots?: Prisma.IntFieldUpdateOperationsInput | number
   color?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  members?: Prisma.UserUncheckedUpdateManyWithoutStudyGroupsNestedInput
+  members?: Prisma.UserUncheckedUpdateManyWithoutStudyGroupNestedInput
 }
 
 export type StudyGroupCreateManyInput = {
@@ -417,16 +417,6 @@ export type StudyGroupUncheckedUpdateManyInput = {
   spots?: Prisma.IntFieldUpdateOperationsInput | number
   color?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type StudyGroupListRelationFilter = {
-  every?: Prisma.StudyGroupWhereInput
-  some?: Prisma.StudyGroupWhereInput
-  none?: Prisma.StudyGroupWhereInput
-}
-
-export type StudyGroupOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
 }
 
 export type StudyGroupCountOrderByAggregateInput = {
@@ -476,6 +466,40 @@ export type StudyGroupSumOrderByAggregateInput = {
   spots?: Prisma.SortOrder
 }
 
+export type StudyGroupListRelationFilter = {
+  every?: Prisma.StudyGroupWhereInput
+  some?: Prisma.StudyGroupWhereInput
+  none?: Prisma.StudyGroupWhereInput
+}
+
+export type StudyGroupOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
+export type StringFieldUpdateOperationsInput = {
+  set?: string
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type DateTimeFieldUpdateOperationsInput = {
+  set?: Date | string
+}
+
 export type StudyGroupCreateNestedManyWithoutMembersInput = {
   create?: Prisma.XOR<Prisma.StudyGroupCreateWithoutMembersInput, Prisma.StudyGroupUncheckedCreateWithoutMembersInput> | Prisma.StudyGroupCreateWithoutMembersInput[] | Prisma.StudyGroupUncheckedCreateWithoutMembersInput[]
   connectOrCreate?: Prisma.StudyGroupCreateOrConnectWithoutMembersInput | Prisma.StudyGroupCreateOrConnectWithoutMembersInput[]
@@ -512,18 +536,6 @@ export type StudyGroupUncheckedUpdateManyWithoutMembersNestedInput = {
   update?: Prisma.StudyGroupUpdateWithWhereUniqueWithoutMembersInput | Prisma.StudyGroupUpdateWithWhereUniqueWithoutMembersInput[]
   updateMany?: Prisma.StudyGroupUpdateManyWithWhereWithoutMembersInput | Prisma.StudyGroupUpdateManyWithWhereWithoutMembersInput[]
   deleteMany?: Prisma.StudyGroupScalarWhereInput | Prisma.StudyGroupScalarWhereInput[]
-}
-
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
-}
-
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
 }
 
 export type StudyGroupCreateWithoutMembersInput = {

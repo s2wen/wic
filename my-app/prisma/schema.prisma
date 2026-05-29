@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client"
   output   = "../generated/prisma"
@@ -12,35 +7,33 @@ datasource db {
   provider = "postgresql"
 }
 
+model StudyGroup {
+  id          String    @id @default(cuid())
+  name        String
+  subject     String
+  description String?
+  location    String?
+  time        String?
+  date        DateTime?
+  spots       Int       @default(5)
+  color       String    @default("teal")
+  createdAt   DateTime  @default(now())
+  members        User[]    @relation("StudyGroupMembers")
+}
+
 model User {
-  id              String         @id @default(cuid())
-  email           String         @unique
+  id              String       @id @default(cuid())
+  email           String       @unique
   name            String?
   pronouns        String?
   image           String?
-  googleId        String?        @unique
+  googleId        String?      @unique
   university      String?
   major           String?
   year            String?
   classes         String[]
-  profileComplete Boolean        @default(false)
-  createdAt       DateTime       @default(now())
-  updatedAt       DateTime       @updatedAt
-
-  studyGroups     StudyGroup[]   @relation("StudyGroupMembers")
-}
-
-model StudyGroup {
-  id        String     @id @default(cuid())
-  name      String
-  subject   String
-  description String?
-  location  String?
-  time      String?
-  date      DateTime?  // specific meeting date
-  spots     Int        @default(5)
-  color     String     @default("teal")
-  createdAt DateTime   @default(now())
-
-  members   User[]     @relation("StudyGroupMembers")
+  profileComplete Boolean      @default(false)
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime
+  StudyGroup      StudyGroup[] @relation("StudyGroupMembers")
 }
