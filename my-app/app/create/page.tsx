@@ -6,23 +6,16 @@ import { useRouter } from "next/navigation"
 import { allCourses } from "./courses"
 
 const locations = [
-    { value: "geisel",      label: "Geisel Library",        desc: "Main library, all floors",     icon: "📍" },
-    { value: "pricecenter", label: "Price Center",          desc: "Cafeteria + study lounges",    icon: "📍" },
-    { value: "ovt",         label: "OVT",                   desc: "Original Student Center",      icon: "📍" },
-    { value: "64degrees",   label: "64 Degrees",            desc: "ERC dining hall",              icon: "📍" },
-    { value: "fah",         label: "Franklin Antonio Hall", desc: "Engineering, 4th floor",       icon: "📍" },
+    { value: "geisel",      label: "Geisel Library",        desc: "Main library",     icon: "📍" },
+    { value: "pricecenter", label: "Price Center",          desc: "2nd floor study spaces",    icon: "📍" },
+    { value: "ovt",         label: "OVT",                   desc: "Marshall dining hall",      icon: "📍" },
+    { value: "64degrees",   label: "64 Degrees",            desc: "Revelle dining hall",              icon: "📍" },
+    { value: "fah",         label: "Ventanas",              desc: "ERC dining hall",       icon: "📍" },
     { value: "galbraith",   label: "Galbraith Hall",        desc: "Revelle College",              icon: "📍" },
-    { value: "online",      label: "Online (Zoom)",         desc: "Link sent after creation",     icon: "💻" },
+    { value: "online",      label: "Online (Zoom)",         desc: "",     icon: "💻" },
 ];
 
 const studyCategories = ["Midterms", "Finals", "Assignments", "Lecture review"];
-
-const preferenceOptions = [
-    { value: "smallgroups", label: "Small group (2–6)" },
-    { value: "biggroups",   label: "Big group (7+)" },
-    { value: "1on1",        label: "1 on 1" },
-    { value: "other",       label: "Other" },
-];
 
 export default function CreateStudyGroup() {
     const name     = "Shiloh Hsieh";
@@ -41,7 +34,6 @@ export default function CreateStudyGroup() {
     const [timeTo,      setTimeTo]      = useState("18:00");
     const [location,    setLocation]    = useState("");
     const [categories,  setCategories]  = useState<Set<string>>(new Set());
-    const [preference,  setPreference]  = useState("smallgroups");
 
     const router = useRouter();
     const searchRef = useRef<HTMLDivElement>(null);
@@ -93,7 +85,6 @@ export default function CreateStudyGroup() {
         return day ? `${day} · ${t}` : `Day pending · ${t}`;
     };
     const previewWhere = () => locations.find(l => l.value === location)?.label || "Location pending";
-    const previewPref  = () => preferenceOptions.find(p => p.value === preference)?.label || "";
 
     return (
         <>
@@ -242,19 +233,6 @@ export default function CreateStudyGroup() {
                         </div>
 
                         <div className={styles.fieldGroup}>
-                            <label className={styles.fieldLabel}>Group size</label>
-                            <div className={styles.chipGroup}>
-                                {preferenceOptions.map(p => (
-                                    <button key={p.value}
-                                        className={preference === p.value ? styles.chipActive : styles.chip}
-                                        onClick={() => setPreference(p.value)}>
-                                        {p.label}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-
-                        <div className={styles.fieldGroup}>
                             <label className={styles.fieldLabel}>Focus on</label>
                             <div className={styles.chipGroup}>
                                 {studyCategories.map(cat => (
@@ -327,7 +305,6 @@ export default function CreateStudyGroup() {
                             description,
                             course:     inputValue,
                             role,
-                            preference,
                             categories: [...categories].join(","),
                             day,
                             timeFrom,
@@ -348,7 +325,6 @@ export default function CreateStudyGroup() {
                         </p>
                         <div className={styles.previewTags}>
                             <span className={styles.previewTag}>{role === "student" ? "Peer study" : "Tutoring"}</span>
-                            <span className={styles.previewTag}>{previewPref()}</span>
                         </div>
                         <table className={styles.previewTable}>
                             <tbody>
