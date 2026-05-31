@@ -80,9 +80,12 @@ export default function CreateStudyGroup() {
         return `${h12}:${m.toString().padStart(2, "0")} ${ampm}`;
     };
 
-    const previewWhen  = () => {
+    const previewWhen = () => {
         const t = `${fmt12(timeFrom)} – ${fmt12(timeTo)}`;
-        return day ? `${day} · ${t}` : `Day pending · ${t}`;
+        if (!day) return `Day pending · ${t}`;
+        const [y, m, d] = day.split("-").map(Number);
+        const formatted = new Date(y, m - 1, d).toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+        return `${formatted} · ${t}`;
     };
     const previewWhere = () => locations.find(l => l.value === location)?.label || "Location pending";
 
@@ -128,8 +131,6 @@ export default function CreateStudyGroup() {
 
                     {/* 01 · Your details */}
                     <div className={styles.section}>
-                        <div className={styles.sectionMeta}>
-                        </div>
                         <h2 className={styles.sectionTitle}>Your details</h2>
                         <div className={styles.profileRow}>
                             <div className={styles.avatar}>SH</div>
@@ -236,20 +237,10 @@ export default function CreateStudyGroup() {
                     {/* 04 · Day & time */}
                     <div className={styles.section}>
                         <h2 className={styles.sectionTitle}>Day &amp; time</h2>
-                        <p className={styles.sectionDesc}>One-time meeting. We&apos;ll surface it on the group&apos;s date.</p>
                         <div className={styles.timeGrid}>
                             <div className={styles.timeCol}>
-                                <label className={styles.fieldLabel}>Day of week</label>
-                                <select className={styles.formSelect} value={day} onChange={e => setDay(e.target.value)}>
-                                    <option value="">Select a day...</option>
-                                    <option value="Monday">Monday</option>
-                                    <option value="Tuesday">Tuesday</option>
-                                    <option value="Wednesday">Wednesday</option>
-                                    <option value="Thursday">Thursday</option>
-                                    <option value="Friday">Friday</option>
-                                    <option value="Saturday">Saturday</option>
-                                    <option value="Sunday">Sunday</option>
-                                </select>
+                                <label className={styles.fieldLabel}>Date</label>
+                                <input className={styles.timeInput} type="date" value={day} onChange={e => setDay(e.target.value)} />
                             </div>
                             <div className={styles.timeCol}>
                                 <label className={styles.fieldLabel}>From</label>
