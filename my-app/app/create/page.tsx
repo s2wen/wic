@@ -10,7 +10,7 @@ const locations = [
     { value: "pricecenter", label: "Price Center",          desc: "2nd floor study spaces",    icon: "📍" },
     { value: "ovt",         label: "OVT",                   desc: "Marshall dining hall",      icon: "📍" },
     { value: "64degrees",   label: "64 Degrees",            desc: "Revelle dining hall",              icon: "📍" },
-    { value: "fah",         label: "Ventanas",              desc: "ERC dining hall",       icon: "📍" },
+    { value: "ventanas",         label: "Ventanas",              desc: "ERC dining hall",       icon: "📍" },
     { value: "galbraith",   label: "Galbraith Hall",        desc: "Revelle College",              icon: "📍" },
     { value: "online",      label: "Online (Zoom)",         desc: "",     icon: "💻" },
 ];

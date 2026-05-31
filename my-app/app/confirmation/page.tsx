@@ -9,16 +9,9 @@ const locations: Record<string, string> = {
     pricecenter: "Price Center",
     ovt:         "OVT",
     "64degrees": "64 Degrees",
-    fah:         "Franklin Antonio Hall",
+    ventanas:         "Ventanas",
     galbraith:   "Galbraith Hall",
     online:      "Online (Zoom)",
-};
-
-const maxMembers: Record<string, string> = {
-    smallgroups: "6",
-    biggroups:   "7+",
-    "1on1":      "2",
-    other:       "—",
 };
 
 const fmt12 = (t: string) => {
@@ -32,18 +25,20 @@ const fmt12 = (t: string) => {
 function ConfirmationContent() {
     const params = useSearchParams();
 
-    const groupName  = params.get("groupName")  || "Study session";
-    const course     = params.get("course")     || "";
-    const day        = params.get("day")        || "";
-    const timeFrom   = params.get("timeFrom")   || "";
-    const timeTo     = params.get("timeTo")     || "";
-    const locationVal = params.get("location")  || "";
-    const preference = params.get("preference") || "smallgroups";
+    const groupName   = params.get("groupName")  || "Study session";
+    const course      = params.get("course")     || "";
+    const day         = params.get("day")        || "";
+    const timeFrom    = params.get("timeFrom")   || "";
+    const timeTo      = params.get("timeTo")     || "";
+    const locationVal = params.get("location")   || "";
 
     const locationLabel = locations[locationVal] || locationVal;
-    const capacity      = maxMembers[preference] || "—";
-    const whenStr       = day
-        ? `${day} · ${fmt12(timeFrom)} – ${fmt12(timeTo)}`
+    const fmtDay = (d: string) => {
+        const [y, mo, dd] = d.split("-").map(Number);
+        return new Date(y, mo - 1, dd).toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+    };
+    const whenStr = day
+        ? `${fmtDay(day)} · ${fmt12(timeFrom)} – ${fmt12(timeTo)}`
         : fmt12(timeFrom) ? `${fmt12(timeFrom)} – ${fmt12(timeTo)}` : "—";
 
     const groupId = useMemo(() => {
@@ -52,9 +47,6 @@ function ConfirmationContent() {
     }, []);
 
     const cardTitle = course ? `${course} — ${groupName}` : groupName;
-    const subtitle  = course
-        ? `It's now visible in the ${course} feed. We'll notify classmates studying the same material.`
-        : "It's now visible in the feed. We'll notify classmates studying the same material.";
 
     return (
         <>
@@ -80,8 +72,7 @@ function ConfirmationContent() {
                 </div>
 
                 {/* ── Heading ── */}
-                <h1 className={styles.title}>Your study group is live</h1>
-                <p className={styles.subtitle}>{subtitle}</p>
+                <h1 className={styles.title}>Study Group Created</h1>
 
                 {/* ── Summary card ── */}
                 <div className={styles.summaryCard}>
@@ -102,12 +93,6 @@ function ConfirmationContent() {
                                 <span>{locationLabel}</span>
                             </div>
                         )}
-                        {capacity !== "—" && (
-                            <div className={styles.summaryRow}>
-                                <span>👥</span>
-                                <span>Up to {capacity} members</span>
-                            </div>
-                        )}
                     </div>
                 </div>
 
@@ -116,9 +101,6 @@ function ConfirmationContent() {
                     <Link href="/create" className={styles.secondaryButton}>Create another</Link>
                     <button className={styles.primaryButton}>View group page →</button>
                 </div>
-
-                {/* ── Footer ── */}
-                <p className={styles.footerNote}>Group ID {groupId} · Created just now</p>
             </div>
         </div>
         </>

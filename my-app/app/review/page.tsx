@@ -5,20 +5,13 @@ import { useSearchParams, useRouter } from "next/navigation"
 import { Suspense } from "react"
 
 const locations = [
-    { value: "geisel",      label: "Geisel Library",        desc: "Main library, all floors" },
-    { value: "pricecenter", label: "Price Center",          desc: "Cafeteria + study lounges" },
-    { value: "ovt",         label: "OVT",                   desc: "Original Student Center" },
-    { value: "64degrees",   label: "64 Degrees",            desc: "ERC dining hall" },
-    { value: "fah",         label: "Franklin Antonio Hall", desc: "Engineering, 4th floor" },
-    { value: "galbraith",   label: "Galbraith Hall",        desc: "Revelle College" },
-    { value: "online",      label: "Online (Zoom)",         desc: "Link sent after creation" },
-];
-
-const preferenceOptions = [
-    { value: "smallgroups", label: "Small group (2–6)", max: "6 members" },
-    { value: "biggroups",   label: "Big group (7+)",    max: "7+ members" },
-    { value: "1on1",        label: "1 on 1",            max: "2 members" },
-    { value: "other",       label: "Other",             max: "—" },
+    { value: "geisel",      label: "Geisel Library",  desc: "Main library" },
+    { value: "pricecenter", label: "Price Center",    desc: "2nd floor study spaces" },
+    { value: "ovt",         label: "OVT",             desc: "Marshall dining hall" },
+    { value: "64degrees",   label: "64 Degrees",      desc: "Revelle dining hall" },
+    { value: "ventanas",         label: "Ventanas",        desc: "ERC dining hall" },
+    { value: "galbraith",   label: "Galbraith Hall",  desc: "Revelle College" },
+    { value: "online",      label: "Online (Zoom)",   desc: "" },
 ];
 
 const fmt12 = (t: string) => {
@@ -37,7 +30,6 @@ function ReviewContent() {
     const description    = params.get("description") || "";
     const course         = params.get("course")      || "";
     const role           = params.get("role")        || "student";
-    const preference     = params.get("preference")  || "smallgroups";
     const categoriesRaw  = params.get("categories")  || "";
     const categories     = categoriesRaw ? categoriesRaw.split(",").filter(Boolean) : [];
     const day            = params.get("day")         || "";
@@ -51,11 +43,14 @@ function ReviewContent() {
     const major    = "Math-CS";
 
     const loc      = locations.find(l => l.value === locationVal);
-    const pref     = preferenceOptions.find(p => p.value === preference);
+    const fmtDay   = (d: string) => {
+        const [y, mo, dd] = d.split("-").map(Number);
+        return new Date(y, mo - 1, dd).toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+    };
     const whenStr  = day
-        ? `${day} · ${fmt12(timeFrom)} – ${fmt12(timeTo)}`
+        ? `${fmtDay(day)} · ${fmt12(timeFrom)} – ${fmt12(timeTo)}`
         : fmt12(timeFrom) ? `${fmt12(timeFrom)} – ${fmt12(timeTo)}` : "—";
-    const whereStr = loc ? `${loc.label} · ${loc.desc}` : "—";
+    const whereStr = loc ? (loc.desc ? `${loc.label} · ${loc.desc}` : loc.label) : "—";
 
     return (
         <>
@@ -91,8 +86,7 @@ function ReviewContent() {
 
             {/* ── Page header ── */}
             <div className={styles.formHeader}>
-                <h1 className={styles.pageTitle}>One last look</h1>
-                <p className={styles.pageSubtitle}>Confirm the details below — your group goes live right after.</p>
+                <h1 className={styles.pageTitle}>Review Details</h1>
             </div>
 
             {/* ── Two-column body ── */}
@@ -102,7 +96,6 @@ function ReviewContent() {
                 <div className={styles.reviewCard}>
                     <div className={styles.reviewMeta}>REVIEW</div>
                     <h2 className={styles.reviewTitle}>Group details</h2>
-                    <p className={styles.reviewDesc}>Anything wrong? Hit back to edit.</p>
 
                     <table className={styles.detailTable}>
                         <tbody>
@@ -126,7 +119,7 @@ function ReviewContent() {
                             </tr>
                             <tr>
                                 <td className={styles.detailKey}>ROLE</td>
-                                <td className={styles.detailVal}>{role === "student" ? "Studying along" : "Tutoring others"}</td>
+                                <td className={styles.detailVal}>{role === "student" ? "Student" : "Tutor"}</td>
                             </tr>
                             <tr>
                                 <td className={styles.detailKey}>WHEN</td>
@@ -135,20 +128,6 @@ function ReviewContent() {
                             <tr>
                                 <td className={styles.detailKey}>WHERE</td>
                                 <td className={styles.detailVal}>{whereStr}</td>
-                            </tr>
-                            <tr>
-                                <td className={styles.detailKey}>SIZE</td>
-                                <td className={styles.detailVal}>{pref?.label || "—"}</td>
-                            </tr>
-                            <tr>
-                                <td className={styles.detailKey}>MAX MEMBERS</td>
-                                <td className={styles.detailVal}>{pref?.max || "—"}</td>
-                            </tr>
-                            <tr>
-                                <td className={styles.detailKey}>VISIBILITY</td>
-                                <td className={styles.detailVal}>
-                                    <span className={styles.pill}>Public</span>
-                                </td>
                             </tr>
                             {categories.length > 0 && (
                                 <tr>
@@ -172,7 +151,6 @@ function ReviewContent() {
                     </table>
 
                     <div className={styles.reviewFooter}>
-                        <span className={styles.footerNote}>You&apos;ll be able to edit anything except the course later.</span>
                         <div className={styles.footerActions}>
                             <button className={styles.backButton} onClick={() => router.back()}>
                                 ← Back to edit
@@ -180,7 +158,7 @@ function ReviewContent() {
                             <button className={styles.publishButton} onClick={() => {
                                 const p = new URLSearchParams({
                                     groupName, course, day, timeFrom, timeTo,
-                                    location: locationVal, preference,
+                                    location: locationVal,
                                 });
                                 router.push(`/confirmation?${p.toString()}`);
                             }}>Publish group</button>
@@ -199,7 +177,6 @@ function ReviewContent() {
                         }
                         <div className={styles.previewTags}>
                             <span className={styles.previewTag}>{role === "student" ? "Peer study" : "Tutoring"}</span>
-                            {pref && <span className={styles.previewTag}>{pref.label}</span>}
                         </div>
                         <table className={styles.previewTable}>
                             <tbody>
@@ -214,10 +191,6 @@ function ReviewContent() {
                                 <tr>
                                     <td className={styles.previewKey}>WHERE</td>
                                     <td className={styles.previewVal}>{loc?.label || "—"}</td>
-                                </tr>
-                                <tr>
-                                    <td className={styles.previewKey}>CAPACITY</td>
-                                    <td className={styles.previewVal}>{pref?.max || "—"}</td>
                                 </tr>
                             </tbody>
                         </table>
