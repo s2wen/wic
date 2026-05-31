@@ -33,7 +33,9 @@ export default function App() {
     { name: 'Henry Jackson', hours: 43, avatar: 'HJ' },
   ];
 
-  const currentLeaders = activeTab === 'study' ? studyLeaders : tutoringLeaders;
+  const currentLeaders =
+    activeTab === 'study' ? studyLeaders : tutoringLeaders;
+
   const topThree = currentLeaders.slice(0, 3);
   const rest = currentLeaders.slice(3);
 
@@ -44,26 +46,40 @@ export default function App() {
   };
 
   const getPodiumColor = (rank: number) => {
-    if (rank === 0) return 'bg-gradient-to-b from-yellow-400 to-yellow-500';
-    if (rank === 1) return 'bg-gradient-to-b from-gray-300 to-gray-400';
-    return 'bg-gradient-to-b from-orange-400 to-orange-500';
+    if (rank === 0)
+      return 'bg-gradient-to-b from-yellow-300 to-yellow-400';
+
+    if (rank === 1)
+      return 'bg-gradient-to-b from-blue-200 to-blue-300';
+
+    return 'bg-gradient-to-b from-orange-300 to-orange-400';
   };
 
   const getMedalColor = (rank: number) => {
-    if (rank === 0) return 'bg-yellow-500 text-yellow-900';
-    if (rank === 1) return 'bg-gray-400 text-gray-900';
-    return 'bg-orange-500 text-orange-900';
+    if (rank === 0)
+      return 'bg-yellow-300 text-yellow-900';
+
+    if (rank === 1)
+      return 'bg-blue-200 text-blue-900';
+
+    return 'bg-orange-300 text-orange-900';
   };
 
   if (currentPage === 'home') {
     return (
-      <div className="size-full flex items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-600">
+      <div className="size-full flex items-center justify-center bg-blue-50">
         <div className="text-center">
-          <h1 className="text-white text-5xl mb-4">Study Buddies</h1>
-          <p className="text-white/80 text-xl mb-8">Find your perfect study group</p>
+          <h1 className="text-gray-900 text-5xl font-semibold mb-4">
+            Study Buddies
+          </h1>
+
+          <p className="text-gray-600 text-xl mb-8">
+            Find your perfect study group
+          </p>
+
           <button
             onClick={() => setCurrentPage('leaderboard')}
-            className="px-8 py-4 bg-white text-indigo-600 rounded-xl hover:bg-gray-100 transition-colors shadow-lg text-lg"
+            className="px-8 py-4 bg-blue-500 text-white rounded-2xl hover:bg-blue-600 transition-colors shadow-md text-lg"
           >
             View Leaderboard
           </button>
@@ -73,32 +89,40 @@ export default function App() {
   }
 
   return (
-    <div className="size-full bg-gray-50 overflow-auto">
+    <div className="size-full bg-blue-50 overflow-auto">
       <div className="max-w-4xl mx-auto pb-12">
+
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 px-6 py-8 mb-6">
-          <h1 className="text-white text-3xl mb-2">Leaderboard</h1>
-          <p className="text-white/90">Top performers in our community</p>
+        <div className="bg-gradient-to-r from-blue-200 to-blue-100 px-6 py-8 mb-6 rounded-b-3xl shadow-sm">
+          <h1 className="text-gray-900 text-3xl font-semibold mb-2">
+            Leaderboard
+          </h1>
+
+          <p className="text-gray-700">
+            Top performers in our community
+          </p>
         </div>
 
         {/* Tabs */}
         <div className="px-6 mb-8">
-          <div className="bg-white rounded-xl shadow-sm p-1 inline-flex">
+          <div className="bg-white rounded-2xl shadow-sm border border-blue-100 p-1 inline-flex">
+
             <button
               onClick={() => setActiveTab('study')}
-              className={`px-6 py-3 rounded-lg transition-all ${
+              className={`px-6 py-3 rounded-xl transition-all ${
                 activeTab === 'study'
-                  ? 'bg-indigo-600 text-white'
+                  ? 'bg-blue-500 text-white'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
               Total Study Hours
             </button>
+
             <button
               onClick={() => setActiveTab('tutoring')}
-              className={`px-6 py-3 rounded-lg transition-all ${
+              className={`px-6 py-3 rounded-xl transition-all ${
                 activeTab === 'tutoring'
-                  ? 'bg-indigo-600 text-white'
+                  ? 'bg-blue-500 text-white'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
@@ -109,91 +133,171 @@ export default function App() {
 
         {/* Podium */}
         <div className="px-6 mb-12">
-          <div className="bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-gray-900 text-xl mb-8 text-center">Top 3 Champions</h2>
+          <div className="bg-white rounded-3xl shadow-sm border border-blue-100 p-8">
 
-            {/* Podium Display - reordered: 2nd, 1st, 3rd */}
+            <h2 className="text-gray-900 text-2xl font-semibold mb-8 text-center">
+              Top 3 Champions
+            </h2>
+
             <div className="flex items-end justify-center gap-6 mb-8">
+
               {/* 2nd Place */}
               <div className="flex flex-col items-center">
+
                 <div className="relative mb-4">
-                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-indigo-400 to-purple-400 flex items-center justify-center shadow-lg">
-                    <span className="text-white text-xl">{topThree[1]?.avatar}</span>
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-300 to-blue-500 flex items-center justify-center shadow-md">
+                    <span className="text-white text-xl font-medium">
+                      {topThree[1]?.avatar}
+                    </span>
                   </div>
-                  <div className={`absolute -bottom-2 -right-2 w-8 h-8 rounded-full ${getMedalColor(1)} flex items-center justify-center text-sm shadow-md`}>
+
+                  <div
+                    className={`absolute -bottom-2 -right-2 w-8 h-8 rounded-full ${getMedalColor(1)} flex items-center justify-center text-sm shadow-md`}
+                  >
                     2
                   </div>
                 </div>
-                <p className="text-gray-900 mb-1 text-center">{topThree[1]?.name}</p>
-                <p className="text-gray-600 text-sm mb-4">{topThree[1]?.hours} hours</p>
-                <div className={`${getPodiumHeight(1)} ${getPodiumColor(1)} w-28 rounded-t-xl shadow-lg flex items-center justify-center`}>
-                  <span className="text-white text-2xl">2</span>
+
+                <p className="text-gray-900 font-medium text-center">
+                  {topThree[1]?.name}
+                </p>
+
+                <p className="text-gray-600 text-sm mb-4">
+                  {topThree[1]?.hours} hours
+                </p>
+
+                <div
+                  className={`${getPodiumHeight(1)} ${getPodiumColor(1)} w-28 rounded-t-2xl shadow-sm flex items-center justify-center`}
+                >
+                  <span className="text-white text-2xl font-semibold">
+                    2
+                  </span>
                 </div>
               </div>
 
               {/* 1st Place */}
               <div className="flex flex-col items-center">
-                {/* Crown */}
-                <svg className="w-12 h-12 text-yellow-500 mb-2" fill="currentColor" viewBox="0 0 24 24">
+
+                <svg
+                  className="w-12 h-12 text-yellow-400 mb-2"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
                   <path d="M12 2l2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5L12 2z" />
                 </svg>
+
                 <div className="relative mb-4">
-                  <div className="w-24 h-24 rounded-full bg-gradient-to-br from-indigo-400 to-purple-400 flex items-center justify-center shadow-xl border-4 border-yellow-400">
-                    <span className="text-white text-2xl">{topThree[0]?.avatar}</span>
+                  <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-300 to-blue-500 flex items-center justify-center shadow-lg border-4 border-yellow-300">
+
+                    <span className="text-white text-2xl font-semibold">
+                      {topThree[0]?.avatar}
+                    </span>
                   </div>
-                  <div className={`absolute -bottom-2 -right-2 w-10 h-10 rounded-full ${getMedalColor(0)} flex items-center justify-center shadow-md`}>
+
+                  <div
+                    className={`absolute -bottom-2 -right-2 w-10 h-10 rounded-full ${getMedalColor(0)} flex items-center justify-center shadow-md`}
+                  >
                     1
                   </div>
                 </div>
-                <p className="text-gray-900 mb-1 text-center">{topThree[0]?.name}</p>
-                <p className="text-gray-600 text-sm mb-4">{topThree[0]?.hours} hours</p>
-                <div className={`${getPodiumHeight(0)} ${getPodiumColor(0)} w-32 rounded-t-xl shadow-xl flex items-center justify-center`}>
-                  <span className="text-white text-3xl">1</span>
+
+                <p className="text-gray-900 font-medium text-center">
+                  {topThree[0]?.name}
+                </p>
+
+                <p className="text-gray-600 text-sm mb-4">
+                  {topThree[0]?.hours} hours
+                </p>
+
+                <div
+                  className={`${getPodiumHeight(0)} ${getPodiumColor(0)} w-32 rounded-t-2xl shadow-md flex items-center justify-center`}
+                >
+                  <span className="text-white text-3xl font-semibold">
+                    1
+                  </span>
                 </div>
               </div>
 
               {/* 3rd Place */}
               <div className="flex flex-col items-center">
+
                 <div className="relative mb-4">
-                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-indigo-400 to-purple-400 flex items-center justify-center shadow-lg">
-                    <span className="text-white text-xl">{topThree[2]?.avatar}</span>
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-300 to-blue-500 flex items-center justify-center shadow-md">
+
+                    <span className="text-white text-xl font-medium">
+                      {topThree[2]?.avatar}
+                    </span>
                   </div>
-                  <div className={`absolute -bottom-2 -right-2 w-8 h-8 rounded-full ${getMedalColor(2)} flex items-center justify-center text-sm shadow-md`}>
+
+                  <div
+                    className={`absolute -bottom-2 -right-2 w-8 h-8 rounded-full ${getMedalColor(2)} flex items-center justify-center text-sm shadow-md`}
+                  >
                     3
                   </div>
                 </div>
-                <p className="text-gray-900 mb-1 text-center">{topThree[2]?.name}</p>
-                <p className="text-gray-600 text-sm mb-4">{topThree[2]?.hours} hours</p>
-                <div className={`${getPodiumHeight(2)} ${getPodiumColor(2)} w-28 rounded-t-xl shadow-lg flex items-center justify-center`}>
-                  <span className="text-white text-2xl">3</span>
+
+                <p className="text-gray-900 font-medium text-center">
+                  {topThree[2]?.name}
+                </p>
+
+                <p className="text-gray-600 text-sm mb-4">
+                  {topThree[2]?.hours} hours
+                </p>
+
+                <div
+                  className={`${getPodiumHeight(2)} ${getPodiumColor(2)} w-28 rounded-t-2xl shadow-sm flex items-center justify-center`}
+                >
+                  <span className="text-white text-2xl font-semibold">
+                    3
+                  </span>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Rest of Rankings */}
+        {/* Rankings */}
         <div className="px-6">
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-            <div className="px-6 py-4 border-b border-gray-200">
-              <h2 className="text-gray-900 text-xl">All Rankings</h2>
+          <div className="bg-white rounded-3xl shadow-sm border border-blue-100 overflow-hidden">
+
+            <div className="px-6 py-4 border-b border-blue-100">
+              <h2 className="text-gray-900 text-xl font-semibold">
+                All Rankings
+              </h2>
             </div>
-            <div className="divide-y divide-gray-200">
+
+            <div className="divide-y divide-blue-100">
               {rest.map((user, index) => (
                 <div
                   key={index}
-                  className="px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors"
+                  className="px-6 py-4 flex items-center justify-between hover:bg-blue-50 transition-colors"
                 >
                   <div className="flex items-center gap-4">
-                    <span className="text-gray-500 text-lg w-8">{index + 4}</span>
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-400 to-purple-400 flex items-center justify-center">
-                      <span className="text-white">{user.avatar}</span>
+
+                    <span className="text-gray-500 text-lg w-8">
+                      {index + 4}
+                    </span>
+
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-300 to-blue-500 flex items-center justify-center">
+
+                      <span className="text-white font-medium">
+                        {user.avatar}
+                      </span>
                     </div>
-                    <span className="text-gray-900">{user.name}</span>
+
+                    <span className="text-gray-900 font-medium">
+                      {user.name}
+                    </span>
                   </div>
+
                   <div className="flex items-center gap-2">
-                    <span className="text-gray-900">{user.hours}</span>
-                    <span className="text-gray-500">hours</span>
+                    <span className="text-gray-900 font-semibold">
+                      {user.hours}
+                    </span>
+
+                    <span className="text-gray-500">
+                      hours
+                    </span>
                   </div>
                 </div>
               ))}
@@ -205,7 +309,7 @@ export default function App() {
         <div className="px-6 mt-8">
           <button
             onClick={() => setCurrentPage('home')}
-            className="w-full px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+            className="w-full px-6 py-3 bg-white border border-blue-200 text-gray-700 rounded-2xl hover:bg-blue-50 transition-colors"
           >
             Back to Homepage
           </button>
