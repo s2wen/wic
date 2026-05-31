@@ -50,7 +50,7 @@ function ReviewContent() {
     const whenStr  = day
         ? `${fmtDay(day)} · ${fmt12(timeFrom)} – ${fmt12(timeTo)}`
         : fmt12(timeFrom) ? `${fmt12(timeFrom)} – ${fmt12(timeTo)}` : "—";
-    const whereStr = loc ? (loc.desc ? `${loc.label} · ${loc.desc}` : loc.label) : "—";
+    const whereStr = loc ? loc.label : "—";
 
     return (
         <>
@@ -80,7 +80,6 @@ function ReviewContent() {
                         <span className={styles.stepNum}>3</span>
                         <span className={styles.stepLabel}>Done</span>
                     </div>
-                    <span className={styles.stepMeta}>Direction A · review</span>
                 </div>
             </div>
 
@@ -162,44 +161,6 @@ function ReviewContent() {
                                 });
                                 router.push(`/confirmation?${p.toString()}`);
                             }}>Publish group</button>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Right: preview panel */}
-                <div className={styles.previewPanel}>
-                    <div className={styles.previewHeader}>PREVIEW · HOW IT APPEARS IN LISTINGS</div>
-                    <div className={styles.previewCard}>
-                        <h3 className={styles.previewTitle}>{groupName || "Untitled study group"}</h3>
-                        {description
-                            ? <p className={styles.previewDesc}>{description}</p>
-                            : <p className={styles.previewPlaceholder}>No description provided.</p>
-                        }
-                        <div className={styles.previewTags}>
-                            <span className={styles.previewTag}>{role === "student" ? "Peer study" : "Tutoring"}</span>
-                        </div>
-                        <table className={styles.previewTable}>
-                            <tbody>
-                                <tr>
-                                    <td className={styles.previewKey}>SUBJECT</td>
-                                    <td className={styles.previewVal}>{course || "—"}</td>
-                                </tr>
-                                <tr>
-                                    <td className={styles.previewKey}>WHEN</td>
-                                    <td className={styles.previewVal}>{whenStr}</td>
-                                </tr>
-                                <tr>
-                                    <td className={styles.previewKey}>WHERE</td>
-                                    <td className={styles.previewVal}>{loc?.label || "—"}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div className={styles.previewHostRow}>
-                            <div className={styles.previewAvatar}>SH</div>
-                            <div>
-                                <div className={styles.previewHostName}>Hosted by {name}</div>
-                                <div className={styles.previewHostInfo}>{year} · {major}</div>
-                            </div>
                         </div>
                     </div>
                 </div>

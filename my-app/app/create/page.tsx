@@ -278,7 +278,7 @@ export default function CreateStudyGroup() {
                         const params = new URLSearchParams({
                             groupName,
                             description,
-                            course:     inputValue,
+                            course:     inputValue ? inputValue.split(" (")[0] : "",
                             role,
                             categories: [...categories].join(","),
                             day,
@@ -295,8 +295,8 @@ export default function CreateStudyGroup() {
                     <div className={styles.previewHeader}>PREVIEW</div>
                     <div className={styles.previewCard}>
                         <h3 className={styles.previewTitle}>{groupName || "Untitled study group"}</h3>
-                        <p className={groupName ? styles.previewDesc : styles.previewPlaceholder}>
-                            {description || "Add a short description of your study group."}
+                        <p className={description ? styles.previewDesc : styles.previewPlaceholder}>
+                            {description || "No description provided."}
                         </p>
                         <div className={styles.previewTags}>
                             <span className={styles.previewTag}>{role === "student" ? "Student" : "Tutor"}</span>
@@ -305,7 +305,7 @@ export default function CreateStudyGroup() {
                             <tbody>
                                 <tr>
                                     <td className={styles.previewKey}>SUBJECT</td>
-                                    <td className={styles.previewVal}>{inputValue || "Subject pending"}</td>
+                                    <td className={styles.previewVal}>{inputValue ? inputValue.split(" (")[0] : "Subject pending"}</td>
                                 </tr>
                                 <tr>
                                     <td className={styles.previewKey}>WHEN</td>
