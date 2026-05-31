@@ -120,7 +120,6 @@ export default function CreateStudyGroup() {
             {/* ── Page header ── */}
             <div className={styles.formHeader}>
                 <h1 className={styles.pageTitle}>Create a study group</h1>
-                <p className={styles.pageSubtitle}>Pick a course, a time, a place — we&apos;ll match you with classmates studying the same thing.</p>
             </div>
 
             {/* ── Two-column body ── */}
@@ -130,11 +129,8 @@ export default function CreateStudyGroup() {
                     {/* 01 · Your details */}
                     <div className={styles.section}>
                         <div className={styles.sectionMeta}>
-                            <span>01 · </span>
-                            <a href="#" className={styles.editLink}>Edit profile</a>
                         </div>
                         <h2 className={styles.sectionTitle}>Your details</h2>
-                        <p className={styles.sectionDesc}>This profile shows on the group listing and to anyone who joins.</p>
                         <div className={styles.profileRow}>
                             <div className={styles.avatar}>SH</div>
                             <div className={styles.profileInfo}>
@@ -152,9 +148,7 @@ export default function CreateStudyGroup() {
 
                     {/* 02 · Group name & description */}
                     <div className={styles.section}>
-                        <div className={styles.sectionMeta}>02 · ABOUT</div>
                         <h2 className={styles.sectionTitle}>Name &amp; description</h2>
-                        <p className={styles.sectionDesc}>Give your group a title and a short description so others know what to expect.</p>
 
                         <div className={styles.fieldGroup}>
                             <label className={styles.fieldLabel}>Group name <span className={styles.required}>*</span></label>
@@ -173,7 +167,7 @@ export default function CreateStudyGroup() {
                             <label className={styles.fieldLabel}>Description</label>
                             <textarea
                                 className={styles.descTextarea}
-                                placeholder="What will you cover? Any prerequisites? Bring your laptop?"
+                                placeholder="What will you cover? Any preferences?"
                                 value={description}
                                 onChange={e => setDescription(e.target.value)}
                                 maxLength={300}
@@ -185,9 +179,7 @@ export default function CreateStudyGroup() {
 
                     {/* 03 · Subject & role */}
                     <div className={styles.section}>
-                        <div className={styles.sectionMeta}>03 · WHAT</div>
                         <h2 className={styles.sectionTitle}>Subject &amp; role</h2>
-                        <p className={styles.sectionDesc}>Choose the class and whether you&apos;re tutoring or studying along.</p>
 
                         <div className={styles.fieldGroup}>
                             <label className={styles.fieldLabel}>Course <span className={styles.required}>*</span></label>
@@ -216,20 +208,15 @@ export default function CreateStudyGroup() {
                         </div>
 
                         <div className={styles.fieldGroup}>
-                            <label className={styles.fieldLabel}>I&apos;m joining as</label>
+                            <label className={styles.fieldLabel}>Join as</label>
                             <div className={styles.toggleGroup}>
                                 <button className={role === "student" ? styles.toggleActive : styles.toggle} onClick={() => setRole("student")}>
-                                    📖 Studying along
+                                    Student
                                 </button>
                                 <button className={role === "tutor" ? styles.toggleActive : styles.toggle} onClick={() => setRole("tutor")}>
-                                    🎓 Tutoring others
+                                    Tutor
                                 </button>
                             </div>
-                            <p className={styles.toggleHint}>
-                                {role === "student"
-                                    ? "You'll be a peer-study host — anyone can join and contribute."
-                                    : "You'll lead the session as a tutor."}
-                            </p>
                         </div>
 
                         <div className={styles.fieldGroup}>
@@ -248,7 +235,6 @@ export default function CreateStudyGroup() {
 
                     {/* 04 · Day & time */}
                     <div className={styles.section}>
-                        <div className={styles.sectionMeta}>04 · WHEN</div>
                         <h2 className={styles.sectionTitle}>Day &amp; time</h2>
                         <p className={styles.sectionDesc}>One-time meeting. We&apos;ll surface it on the group&apos;s date.</p>
                         <div className={styles.timeGrid}>
@@ -278,9 +264,7 @@ export default function CreateStudyGroup() {
 
                     {/* 05 · Location */}
                     <div className={styles.section}>
-                        <div className={styles.sectionMeta}>05 · WHERE</div>
                         <h2 className={styles.sectionTitle}>Location</h2>
-                        <p className={styles.sectionDesc}>Pick an on-campus spot, or host online.</p>
                         <div className={styles.locationList}>
                             {locations.map(loc => (
                                 <label key={loc.value}
@@ -317,14 +301,14 @@ export default function CreateStudyGroup() {
 
                 {/* ── Preview panel ── */}
                 <div className={styles.previewPanel}>
-                    <div className={styles.previewHeader}>PREVIEW · HOW IT APPEARS IN LISTINGS</div>
+                    <div className={styles.previewHeader}>PREVIEW</div>
                     <div className={styles.previewCard}>
                         <h3 className={styles.previewTitle}>{groupName || "Untitled study group"}</h3>
                         <p className={groupName ? styles.previewDesc : styles.previewPlaceholder}>
-                            {description || "Add a short description so others know what to expect."}
+                            {description || "Add a short description of your study group."}
                         </p>
                         <div className={styles.previewTags}>
-                            <span className={styles.previewTag}>{role === "student" ? "Peer study" : "Tutoring"}</span>
+                            <span className={styles.previewTag}>{role === "student" ? "Student" : "Tutor"}</span>
                         </div>
                         <table className={styles.previewTable}>
                             <tbody>
@@ -340,10 +324,6 @@ export default function CreateStudyGroup() {
                                     <td className={styles.previewKey}>WHERE</td>
                                     <td className={styles.previewVal}>{previewWhere()}</td>
                                 </tr>
-                                <tr>
-                                    <td className={styles.previewKey}>CAPACITY</td>
-                                    <td className={styles.previewVal}>6 members max</td>
-                                </tr>
                             </tbody>
                         </table>
                         <div className={styles.previewHostRow}>
@@ -353,10 +333,6 @@ export default function CreateStudyGroup() {
                                 <div className={styles.previewHostInfo}>{year} · {major}</div>
                             </div>
                         </div>
-                    </div>
-                    <div className={styles.previewTip}>
-                        <span className={styles.tipIcon}>i</span>
-                        <span>Tip — groups with a clear description and a specific course chapter get joined <strong>3x more</strong> than generic ones.</span>
                     </div>
                 </div>
             </div>
