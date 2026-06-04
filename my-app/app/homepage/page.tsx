@@ -21,6 +21,8 @@ export default async function homePage(){
         name: g.name,
         subject: g.subject,
         day: g.date ? new Date(g.date).getDate() : 0,
+        month: g.date ? new Date(g.date).getMonth() : -1,
+        year: g.date ? new Date(g.date).getFullYear() : -1,
         time: g.time ?? "",
         location: g.location,
         spots: g.spots - g.members.length, // remaining spots

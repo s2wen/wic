@@ -59,6 +59,15 @@ export default function Profile({ dbUser }: { dbUser: {
   major: string | null
   year: string | null
   classes: string[]
+  StudyGroup: {
+    id: string
+    name: string
+    subject: string
+    time: string | null
+    date: Date | null
+    location: string | null
+    color: string
+  }[]
 }}) {
   const [userState, setUserState] = useState<User>({
     username: "@" + (dbUser.name?.toLowerCase().replace(" ", "") ?? "user"),
@@ -68,8 +77,19 @@ export default function Profile({ dbUser }: { dbUser: {
     major: dbUser.major ?? "",
     year: dbUser.year ?? "",
     courses: dbUser.classes.map(c => ({ name: c })),
-    sessions: [],
-    history: [],});
+    sessions: dbUser.StudyGroup.map(g => ({
+      name: g.name,
+      course: g.subject,
+      time: g.time ?? "",
+      date: g.date?.toISOString().split("T")[0],
+      status: "Current",
+    })),
+    history: (dbUser.StudyGroup ?? []).map(g => ({
+      groupName: g.name,
+      course: g.subject,
+      meetings: 1,
+    })),
+  })
 
   const [showAddCourse, setShowAddCourse] = useState(false);
   const [showEditProfile, setShowEditProfile] = useState(false);
@@ -267,7 +287,6 @@ export default function Profile({ dbUser }: { dbUser: {
             <div className={styles.profileInfo}>
               <div className={styles.nameRow}>
                 <div>
-                  <div className={styles.username}>{userState.username}</div>
                   <h1 className={styles.name}>
                     {userState.firstName} {userState.lastName}
                   </h1>
@@ -290,7 +309,7 @@ export default function Profile({ dbUser }: { dbUser: {
         </div>
 
         <div className={styles.contentCard}>
-          <section className={styles.section}>
+          {/* <section className={styles.section}>
             <div className={styles.overviewBanner}>
               <h3 className={styles.panelTitle}>Quick Overview</h3>
               <p className={styles.overviewText}>
@@ -298,7 +317,7 @@ export default function Profile({ dbUser }: { dbUser: {
                 while keeping focus on what&apos;s important.
               </p>
             </div>
-          </section>
+          </section> */}
 
           <section className={styles.section}>
             <div className={styles.insightGrid}>
@@ -306,9 +325,9 @@ export default function Profile({ dbUser }: { dbUser: {
                 <div className={styles.listCardTop}>
                   <div>
                     <h3 className={styles.listTitle}>Courses</h3>
-                    <div className={styles.courseCountBadge}>
+                    {/* <div className={styles.courseCountBadge}>
                       Active: {userState.courses.length}
-                    </div>
+                    </div> */}
                   </div>
                   <div>
                     <button
@@ -333,9 +352,9 @@ export default function Profile({ dbUser }: { dbUser: {
                             Section {c.section || "TBA"}
                           </div>
                         </div>
-                        <div className={styles.coursePill}>
+                        {/* <div className={styles.coursePill}>
                           {c.professor || "Professor TBA"}
-                        </div>
+                        </div> */}
                       </div>
                       <div className={styles.courseCardBottom}>
                         <div className={styles.courseInfoRow}>
@@ -401,7 +420,7 @@ export default function Profile({ dbUser }: { dbUser: {
             </div>
           </section>
 
-          <section
+          {/* <section
             className={`${styles.section} ${styles.calendarFullSection}`}
           >
             <div className={`${styles.panelCard} ${styles.calendarFullCard}`}>
@@ -472,7 +491,7 @@ export default function Profile({ dbUser }: { dbUser: {
                 </div>
               </div>
             </div>
-          </section>
+          </section> */}
         </div>
 
         {showAddCourse && (
@@ -538,9 +557,9 @@ export default function Profile({ dbUser }: { dbUser: {
               <div className={styles.modalHeader}>
                 <div>
                   <div className={styles.modalTitle}>Edit profile</div>
-                  <div className={styles.modalSubtitle}>
+                  {/* <div className={styles.modalSubtitle}>
                     Update the details that matter most in your profile.
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className={styles.fieldGrid}>

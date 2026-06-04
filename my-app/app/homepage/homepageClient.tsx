@@ -20,7 +20,9 @@ type StudyGroup = {
   id: string        
   name: string
   subject: string
-  day: number       
+  day: number
+  month: number
+  year: number       
   time: string
   location: string | null
   spots: number
@@ -92,8 +94,8 @@ export default function homepageClient({groups}: {groups: StudyGroup[]}) {
   }
 
   const selectedGroups = selectedDay
-    ? groups.filter(g => g.day === selectedDay)
-    : [];
+  ? groups.filter(g => g.day === selectedDay && g.month === month && g.year === year)
+  : []
 
   // ── Auth helpers ──────────────────────────────────────────────────────────
   // function openAuth(mode: "signin" | "signup", group?: StudyGroup) {
@@ -159,6 +161,12 @@ export default function homepageClient({groups}: {groups: StudyGroup[]}) {
           {MONTHS[month]} {year}
         </h2>
         <div className="flex gap-2">
+          <Link
+            href="/create"
+            className="w-8 h-8 flex items-center justify-center bg-teal-600 text-white rounded-lg hover:bg-teal-700 text-lg font-medium transition-colors"
+          >
+            +
+          </Link>
           <button onClick={prevMonth} className="w-8 h-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-100">
             &#8249;
           </button>
@@ -190,7 +198,7 @@ export default function homepageClient({groups}: {groups: StudyGroup[]}) {
             today.getMonth() === month &&
             today.getFullYear() === year;
           const isSelected = selectedDay === day;
-          const dayGroups  = groups.filter(g => g.day === day);
+          const dayGroups  = groups.filter(g => g.day === day && g.month === month && g.year === year)
 
           return (
             <div

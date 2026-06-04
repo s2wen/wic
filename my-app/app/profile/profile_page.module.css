@@ -12,18 +12,7 @@
   min-height: 100vh;
   width: 100%;
   color: var(--text);
-  background:
-    radial-gradient(
-      circle at top left,
-      rgba(79, 127, 217, 0.12),
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at top right,
-      rgba(155, 184, 236, 0.14),
-      transparent 28%
-    ),
-    linear-gradient(180deg, #f4f8fd 0%, #fbfdff 100%);
+  background: #f7faff;
 }
 
 .navbar {
@@ -137,7 +126,7 @@
   padding: 28px;
 }
 
-.heroGlow {
+/* .heroGlow {
   position: absolute;
   inset: auto -60px -80px auto;
   width: 240px;
@@ -149,7 +138,7 @@
     transparent 70%
   );
   pointer-events: none;
-}
+} */
 
 .profileRow {
   position: relative;
@@ -170,7 +159,6 @@
   letter-spacing: 0.06em;
   color: #ffffff;
   background: #2d4c8a;
-  box-shadow: 0 18px 30px rgba(15, 118, 110, 0.25);
 }
 
 .profileInfo {
@@ -222,7 +210,6 @@
   background: #4a73c8;
   color: #ffffff;
   padding: 11px 18px;
-  box-shadow: 0 8px 18px rgba(79, 127, 217, 0.18);
 }
 
 .button:hover {
@@ -398,11 +385,7 @@
 }
 
 .overviewBanner {
-  background: linear-gradient(
-    90deg,
-    rgba(79, 127, 217, 0.06),
-    rgba(155, 184, 236, 0.02)
-  );
+  background: rgba(79, 127, 217, 0.05);
   border-radius: 16px;
   padding: 22px;
   border: 1px solid rgba(79, 127, 217, 0.1);

@@ -9,6 +9,9 @@ export default async function ProfilePage(){
 
   const dbUser = await prisma.user.findUnique({
     where: {email: session.user.email!},
+    include: {
+      StudyGroup: true,
+    }
   })
 
   if(!dbUser) redirect("/");

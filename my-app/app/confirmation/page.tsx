@@ -115,7 +115,7 @@ function ConfirmationContent() {
                 {/* ── Actions ── */}
                 <div className={styles.actions}>
                     <Link href="/create" className={styles.secondaryButton}>Create another</Link>
-                    <button className={styles.primaryButton}>View group page →</button>
+                    <Link href="/homepage" className={styles.primaryButton}>View group page →</Link>
                 </div>
 
                 {/* ── Footer ── */}
