@@ -101,10 +101,14 @@ export default function CreateStudyGroup({ user }: { user: {
         return `${h12}:${m.toString().padStart(2, "0")} ${ampm}`;
     };
 
-    const previewWhen  = () => {
-        const t = `${fmt12(timeFrom)} – ${fmt12(timeTo)}`;
-        return day ? `${day} · ${t}` : `Day pending · ${t}`;
-    };
+    const previewWhen = () => {
+        const t = `${fmt12(timeFrom)} – ${fmt12(timeTo)}`
+        if (!day) return `Date pending · ${t}`
+        const formatted = new Date(day + 'T00:00:00').toLocaleDateString('en-US', {
+            weekday: 'short', month: 'short', day: 'numeric'
+        })
+        return `${formatted} · ${t}`
+    }
     const previewWhere = () => locations.find(l => l.value === location)?.label || "Location pending";
     const previewPref  = () => preferenceOptions.find(p => p.value === preference)?.label || "";
 
@@ -284,21 +288,18 @@ export default function CreateStudyGroup({ user }: { user: {
                     {/* 04 · Day & time */}
                     <div className={styles.section}>
                         <div className={styles.sectionMeta}>04 · WHEN</div>
-                        <h2 className={styles.sectionTitle}>Day &amp; time</h2>
-                        <p className={styles.sectionDesc}>One-time meeting. We&apos;ll surface it on the group&apos;s date.</p>
+                        <h2 className={styles.sectionTitle}>Date &amp; time</h2>
+                        <p className={styles.sectionDesc}>Choose the time for your study session.</p>
                         <div className={styles.timeGrid}>
                             <div className={styles.timeCol}>
-                                <label className={styles.fieldLabel}>Day of week</label>
-                                <select className={styles.formSelect} value={day} onChange={e => setDay(e.target.value)}>
-                                    <option value="">Select a day...</option>
-                                    <option value="Monday">Monday</option>
-                                    <option value="Tuesday">Tuesday</option>
-                                    <option value="Wednesday">Wednesday</option>
-                                    <option value="Thursday">Thursday</option>
-                                    <option value="Friday">Friday</option>
-                                    <option value="Saturday">Saturday</option>
-                                    <option value="Sunday">Sunday</option>
-                                </select>
+                                <label className={styles.fieldLabel}>Date</label>
+                                <input
+                                    className={styles.timeInput}
+                                    type="date"
+                                    value={day}
+                                    min={new Date().toISOString().split("T")[0]}
+                                    onChange={e => setDay(e.target.value)}
+                                />
                             </div>
                             <div className={styles.timeCol}>
                                 <label className={styles.fieldLabel}>From</label>
@@ -353,7 +354,7 @@ export default function CreateStudyGroup({ user }: { user: {
 
                 {/* ── Preview panel ── */}
                 <div className={styles.previewPanel}>
-                    <div className={styles.previewHeader}>PREVIEW · HOW IT APPEARS IN LISTINGS</div>
+                    <div className={styles.previewHeader}>PREVIEW</div>
                     <div className={styles.previewCard}>
                         <h3 className={styles.previewTitle}>{groupName || "Untitled study group"}</h3>
                         <p className={groupName ? styles.previewDesc : styles.previewPlaceholder}>
@@ -391,10 +392,10 @@ export default function CreateStudyGroup({ user }: { user: {
                             </div>
                         </div>
                     </div>
-                    <div className={styles.previewTip}>
+                    {/* <div className={styles.previewTip}>
                         <span className={styles.tipIcon}>i</span>
                         <span>Tip — groups with a clear description and a specific course chapter get joined <strong>3x more</strong> than generic ones.</span>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

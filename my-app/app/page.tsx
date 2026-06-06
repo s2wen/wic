@@ -42,9 +42,9 @@ export default async function LandingPage() {
           <span style={{ fontWeight: 800, fontSize: 18, letterSpacing: '-0.3px', color: '#13233a' }}>
             Triton<span style={{ color: '#4f7fd9' }}>Study</span>
           </span>
-          <span style={{ fontSize: 13, color: '#66768e', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+          {/* <span style={{ fontSize: 13, color: '#66768e', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
             UC San Diego
-          </span>
+          </span> */}
         </div>
       </nav>
 
@@ -101,7 +101,7 @@ export default async function LandingPage() {
           margin: 0,
           maxWidth: 640,
         }}>
-          Find your study crew at{' '}
+          Find your Triton study buddies at{' '}
           <span style={{ color: '#4f7fd9' }}>UC San Diego</span>
         </h1>
 
@@ -112,8 +112,7 @@ export default async function LandingPage() {
           maxWidth: 520,
           margin: 0,
         }}>
-          Match with classmates by course, form study groups, and keep King Triton alive —
-          he loses energy every day you skip studying.
+          Match with classmates by course, form study groups, and keep King Triton alive, because he'll lose energy every day if you don't study!
         </p>
 
         {/* Sign in button */}
@@ -145,7 +144,7 @@ export default async function LandingPage() {
         </form>
 
         {/* Warning banner */}
-        <div style={{
+        {/* <div style={{
           display: 'flex',
           alignItems: 'flex-start',
           gap: 12,
@@ -161,7 +160,7 @@ export default async function LandingPage() {
             <span style={{ color: '#3f6bc0', fontWeight: 700 }}>Warning:</span> King Triton loses health
             every day you skip studying. Log your sessions to keep him alive.
           </p>
-        </div>
+        </div> */}
       </div>
 
       {/* Feature cards */}
@@ -175,9 +174,9 @@ export default async function LandingPage() {
         width: '100%',
       }}>
         {[
-          { icon: '🔍', title: 'Find study groups', desc: 'Browse by class, major, or time' },
-          { icon: '📚', title: 'Match by class', desc: 'Auto-connect with classmates' },
-          { icon: '🔱', title: 'Keep Triton alive', desc: 'Log sessions or watch him suffer' },
+          { icon: '🔍', title: 'Find study groups', desc: 'Browse study groups by time' },
+          { icon: '📚', title: 'Match by class', desc: 'Connect with classmates' },
+          { icon: '🔱', title: 'Keep Triton alive', desc: 'Study or watch him slowly suffer...' },
           { icon: '📅', title: 'Schedule sessions', desc: 'Coordinate with your group' },
         ].map(f => (
           <div key={f.title} style={{

@@ -131,7 +131,7 @@ function ReviewContent({user}: {user: User}) {
             {/* ── Page header ── */}
             <div className={styles.formHeader}>
                 <h1 className={styles.pageTitle}>One last look</h1>
-                <p className={styles.pageSubtitle}>Confirm the details below — your group goes live right after.</p>
+                <p className={styles.pageSubtitle}>Confirm the details below, before publishing your group to the world!</p>
             </div>
 
             {/* ── Two-column body ── */}
@@ -211,7 +211,7 @@ function ReviewContent({user}: {user: User}) {
                     </table>
 
                     <div className={styles.reviewFooter}>
-                        <span className={styles.footerNote}>You&apos;ll be able to edit anything except the course later.</span>
+                        <span className={styles.footerNote}>After publishing, you cannot edit it anymore ):</span>
                         <div className={styles.footerActions}>
                             <button className={styles.backButton} onClick={() => router.back()}>
                                 ← Back to edit
@@ -223,7 +223,7 @@ function ReviewContent({user}: {user: User}) {
 
                 {/* Right: preview panel */}
                 <div className={styles.previewPanel}>
-                    <div className={styles.previewHeader}>PREVIEW · HOW IT APPEARS IN LISTINGS</div>
+                    <div className={styles.previewHeader}>PREVIEW</div>
                     <div className={styles.previewCard}>
                         <h3 className={styles.previewTitle}>{groupName || "Untitled study group"}</h3>
                         {description
