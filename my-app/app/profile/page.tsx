@@ -14,7 +14,18 @@ export default async function ProfilePage(){
     }
   })
 
+  const thirtyDaysAgo = new Date()
+  thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30)
+  
+  const recentGroups = dbUser!.StudyGroup.filter(g =>
+    g.createdAt > thirtyDaysAgo
+  ).length
+
+  // each group = 20hp, max 100, min 0
+  const health = Math.min(100, Math.max(0, recentGroups * 20))
+
+
   if(!dbUser) redirect("/");
 
-  return <ProfileClient dbUser={dbUser}/>
+  return <ProfileClient dbUser={dbUser} health={health}/>
 }

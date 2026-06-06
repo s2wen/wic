@@ -333,7 +333,7 @@ export type UserCreateInput = {
   classes?: Prisma.UserCreateclassesInput | string[]
   profileComplete?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   StudyGroup?: Prisma.StudyGroupCreateNestedManyWithoutMembersInput
 }
 
@@ -350,7 +350,7 @@ export type UserUncheckedCreateInput = {
   classes?: Prisma.UserCreateclassesInput | string[]
   profileComplete?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   StudyGroup?: Prisma.StudyGroupUncheckedCreateNestedManyWithoutMembersInput
 }
 
@@ -401,7 +401,7 @@ export type UserCreateManyInput = {
   classes?: Prisma.UserCreateclassesInput | string[]
   profileComplete?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type UserUpdateManyMutationInput = {
@@ -564,7 +564,7 @@ export type UserCreateWithoutStudyGroupInput = {
   classes?: Prisma.UserCreateclassesInput | string[]
   profileComplete?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type UserUncheckedCreateWithoutStudyGroupInput = {
@@ -580,7 +580,7 @@ export type UserUncheckedCreateWithoutStudyGroupInput = {
   classes?: Prisma.UserCreateclassesInput | string[]
   profileComplete?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type UserCreateOrConnectWithoutStudyGroupInput = {

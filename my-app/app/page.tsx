@@ -64,7 +64,7 @@ export default async function LandingPage() {
         <div style={{ animation: 'float 4s ease-in-out infinite' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://www.clipartmax.com/png/middle/159-1597355_ucsd-triton.png"
+            src="/clipart4680483.png"
             alt="King Triton UCSD mascot"
             style={{ width: 180, height: 'auto', objectFit: 'contain' }}
           />

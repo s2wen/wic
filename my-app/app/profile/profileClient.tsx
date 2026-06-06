@@ -53,7 +53,7 @@ const initialUser: User = {
   history: [{ groupName: "Study Group A", course: "CSE 12", meetings: 6 }],
 };
 
-export default function Profile({ dbUser }: { dbUser: {
+export default function Profile({ dbUser, health }: { dbUser: {
   name: string | null
   email: string
   major: string | null
@@ -68,7 +68,9 @@ export default function Profile({ dbUser }: { dbUser: {
     location: string | null
     color: string
   }[]
-}}) {
+},
+  health: number
+}) {
   const [userState, setUserState] = useState<User>({
     username: "@" + (dbUser.name?.toLowerCase().replace(" ", "") ?? "user"),
     firstName: dbUser.name?.split(" ")[0] ?? "",
@@ -120,6 +122,94 @@ export default function Profile({ dbUser }: { dbUser: {
     d.setDate(1);
     return d;
   });
+
+  function TritonHealth({ health }: { health: number }) {
+  const getStatus = () => {
+    if (health >= 80) return { message: "Thriving! Keep studying! 💪", color: "#22c55e" }
+    if (health >= 60) return { message: "Doing okay, keep it up!", color: "#4f7fd9" }
+    if (health >= 40) return { message: "Getting tired... join a group!", color: "#f59e0b" }
+    if (health >= 20) return { message: "Struggling badly... please study!", color: "#f97316" }
+    return { message: "Critical! Triton needs you! 🆘", color: "#ef4444" }
+  }
+
+  const { message, color } = getStatus()
+
+  return (
+    <div style={{
+      background: '#ffffff',
+      border: '1px solid #dbe6f3',
+      borderRadius: 20,
+      padding: '22px',
+      boxShadow: '0 2px 12px rgba(79,127,217,0.06)',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      gap: 12,
+      textAlign: 'center',
+    }}>
+      <div style={{ fontSize: 13, fontWeight: 700, color: '#66768e', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+        King Triton
+      </div>
+
+      {/* Floating Triton */}
+      <div style={{ animation: 'float 4s ease-in-out infinite' }}>
+        <img
+          src="/clipart4680483.png"
+          alt="King Triton"
+          style={{
+            width: 100,
+            height: 'auto',
+            objectFit: 'contain',
+            filter: health < 20
+              ? 'grayscale(80%) brightness(0.7)'
+              : health < 40
+              ? 'grayscale(40%) brightness(0.85)'
+              : 'none',
+            transition: 'filter 0.5s ease',
+          }}
+        />
+      </div>
+
+      {/* Health bar */}
+      <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 6 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <span style={{ fontSize: 12, fontWeight: 700, color: '#66768e' }}>Health</span>
+          <span style={{ fontSize: 12, fontWeight: 800, color }}>{health}%</span>
+        </div>
+        <div style={{
+          width: '100%', height: 10,
+          background: 'rgba(79,127,217,0.1)',
+          borderRadius: 5,
+          border: '1px solid rgba(79,127,217,0.15)',
+          overflow: 'hidden',
+        }}>
+          <div style={{
+            height: '100%',
+            width: `${health}%`,
+            background: color,
+            borderRadius: 5,
+            transition: 'width 0.8s ease, background 0.5s ease',
+          }}/>
+        </div>
+      </div>
+
+      <p style={{ fontSize: 13, color: '#66768e', margin: 0, lineHeight: 1.5 }}>
+        {message}
+      </p>
+
+      <p style={{ fontSize: 11, color: '#9bb8ec', margin: 0 }}>
+        Based on study groups joined in the last 30 days
+      </p>
+
+      <style>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) rotate(-1deg); }
+          50% { transform: translateY(-10px) rotate(1deg); }
+        }
+      `}</style>
+    </div>
+  )
+}
 
   function formatISO(d: Date) {
     const year = d.getFullYear();
@@ -388,7 +478,12 @@ export default function Profile({ dbUser }: { dbUser: {
                 </div>
               </div>
 
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+              {/* Triton health widget */}
+              <TritonHealth health={health} />
+
               <div className={styles.listCard}>
+                
                 <h3 className={styles.listTitle}>Sessions</h3>
                 <div className={styles.sessionDetails}>
                   {userState.sessions.map((s, i) => (
@@ -399,6 +494,7 @@ export default function Profile({ dbUser }: { dbUser: {
                     </div>
                   ))}
                 </div>
+                
               </div>
 
               <div className={styles.listCard}>
@@ -418,8 +514,10 @@ export default function Profile({ dbUser }: { dbUser: {
                 </div>
               </div>
             </div>
+            </div>
+            
           </section>
-
+          
           {/* <section
             className={`${styles.section} ${styles.calendarFullSection}`}
           >
